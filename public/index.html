@@ -4,5 +4,22 @@
     <script type="text/javascript" src="drawmusic.js"></script>
   </head>
   <body>
+  
+  <script type="text/javascript">
+		$(document).ready(function() {
+			$("#startGame").click(function() {
+				startGame();
+				return false;
+			});
+			
+			$("#endGame").click(function() {
+				endGame();
+				return false;
+			});
+		});
+  </script>
+	  <a href="#" id="startGame">Let's go!</a><br />
+	  <a href="#" id="endGame">We're done for today</a>
+
   </body>
 </html>
