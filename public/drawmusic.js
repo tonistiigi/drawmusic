@@ -2,11 +2,16 @@
 
 
 function setupLayers(points, endImage) {
-
+    // NOT MY CODE TO WRITE, remove as you want (Indrek)
+    layerComplete();
 }
 
 function layerComplete() {
     console.debug('Level %s complete.', currentLayer);
+    if (currentLayer < level.layers.length - 1) {
+        currentLayer++;
+        setupLayers(null, null); // järg
+    }
 }
 
 function layerProgress() {
@@ -16,10 +21,10 @@ function layerProgress() {
 
 function startGame() {
     alert('Careful, we are now starting!');
-    currentLayer = 0;
-    layerComplete();
-    layerComplete();
     console.debug('Total levels: %s', level.layers.length);
+    currentLayer = 0;
+    setupLayers(level.layers[currentLayer], null);
+    
 }
 
 function endGame() {
