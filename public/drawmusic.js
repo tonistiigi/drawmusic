@@ -1,7 +1,8 @@
 // I know these global fuctions are wrong. I know!
 
 
-function setupLayers(points, endImage) {
+function setupLayer(points, endImage) {
+
 
 }
 
@@ -37,3 +38,16 @@ var level = {
   duration: 12.3
 }
 
+
+/*
+var a = {}
+var b = $(a)
+
+b.one('customevent', function() {
+  console.log('got custom', arguments)
+})
+
+setTimeout(function() {
+  b.trigger('customevent', ['abc', 'asd'])
+  b.trigger('customevent', ['abc2', 'asd'])
+}, 1000)*/
