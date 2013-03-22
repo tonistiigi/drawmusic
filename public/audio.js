@@ -13,7 +13,7 @@ audio.prepareAudio = function (level) {
   })
 
   audio.on('loaded', function() {
-    if (audio.nextTrack) audio.startLayer(audio.nextTrack)
+    if (audio.nextTrack) audio.loadTrack(audio.nextTrack)
     audio.nextTrack = 0
     audio.play()
   })
@@ -21,6 +21,7 @@ audio.prepareAudio = function (level) {
 }
 
 audio.startLayer = function(index) {
+  audio.vol = 0
   if (buffers[index]) {
     audio.loadTrack(index)
   }
@@ -34,8 +35,37 @@ audio.play = function() {
 }
 
 audio.pause = function() {
+
+}
+
+audio.loadTrack = function(index) {
+  var b = buffers[index]
+  b.source = audio.context.createBufferSource()
+  b.source.buffer = b.buffer
+  b.gain = audio.context.createGainNode()
+  b.gain.connect(audio.gain)
+  b.gain.gain.value = 0
+  b.source.connect(b.gain)
+  audio.active = index
+  b.source.noteOn(0)
+
+  setTimeout(function() {
+    onEnded()
+  }. b.buffer.duration * 1e3 - 150)
+}
+
+function onEnded() {
   
 }
+
+audio.setProgress = function(val) {
+  buffers[audio.active].gain.gain.value = val / 100
+}
+
+audio.setComplete = function() {
+  buffers[audio.active].gain.gain.value = 1
+}
+
 
 
 function loadBuffer(layer, i) {
@@ -48,7 +78,7 @@ function loadBuffer(layer, i) {
          if (!buffer) {
              return console.error('Error decoding file:', path);
          }
-         buffers[i] = buffer
+         buffers[i] = {buffer: buffer}
          audio.loaded++
          if (audio.loaded >= buffers.length) {
            audio.trigger('loaded')
