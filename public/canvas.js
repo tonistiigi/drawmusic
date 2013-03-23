@@ -6,9 +6,9 @@ function initCanvas() {
   var offset = canvas.offset();
   var context = canvas.get(0).getContext('2d');
 
-  context.strokeStyle = '#000000';
-  context.lineWidth = 4;
+  context.lineWidth = 6;
   context.lineCap = 'square';
+  context.strokeStyle = 'rgba(255, 255, 255, 1)'
 
   var isdown = 0;
 
@@ -24,6 +24,7 @@ function initCanvas() {
     // Store the current transformation matrix
     context.save();
     // Use the identity matrix while clearing the canvas
+
     context.setTransform(1, 0, 0, 1, 0, 0);
     context.clearRect(0, 0, canvas.width(), canvas.height());
     // Restore the transform

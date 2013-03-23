@@ -119,7 +119,7 @@ function isNextPoint(x, y) {
 				console.log("picture is complete");
         $('#canvas .points').empty()
 
-        $('#canvas .outlines').empty()
+        $('#canvas #outlines').empty()
 
 
         clearCanvas();
