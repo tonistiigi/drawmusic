@@ -38,6 +38,23 @@ var level = {
   duration: 12.3
 }
 
+var level = {
+  name: 'twinkle',
+  layers: [
+    { audio: 'twinkle/twink1_drums.mp3' },
+    { audio: 'twinkle/twink1_bass.mp3' },
+    { audio: 'twinkle/twink1_strings.mp3' },
+    { audio: 'twinkle/twink1_lead.mp3' }
+  ]
+}
+
+
+
+audio.prepareAudio(level)
+audio.on('loaded', function() {
+  //downloaded
+})
+
 
 /*
 var a = {}

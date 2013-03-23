@@ -4,8 +4,9 @@ var AudioContext = window.AudioContext || window.webkitAudioContext
 var buffers = []
 
 audio.prepareAudio = function (level) {
+  audio.playing = false
   audio.context = new AudioContext
-  audio.gain = context.createGainNode()
+  audio.gain = audio.context.createGainNode()
   audio.gain.connect(audio.context.destination)
   audio.loaded = 0
   level.layers.map(function(layer, i) {
@@ -31,31 +32,50 @@ audio.startLayer = function(index) {
 }
 
 audio.play = function() {
+  if (audio.playing) return
+
+  buffers.forEach(function(b, index) {
+    b.source = audio.context.createBufferSource()
+    b.source.buffer = b.buffer
+    b.gain = audio.context.createGainNode()
+    b.gain.connect(audio.gain)
+    b.gain.gain.value = .4
+    b.source.connect(b.gain)
+    b.source.noteOn(0)
+    b.time = audio.context.currentTime
+  })
+
+  audio.playing = true
+
+  setTimeout(function() {
+    replay()
+  }, buffers[0].buffer.duration * 1000  - 150)
 
 }
 
 audio.pause = function() {
-
+  // not implemented
 }
 
 audio.loadTrack = function(index) {
-  var b = buffers[index]
-  b.source = audio.context.createBufferSource()
-  b.source.buffer = b.buffer
-  b.gain = audio.context.createGainNode()
-  b.gain.connect(audio.gain)
-  b.gain.gain.value = 0
-  b.source.connect(b.gain)
   audio.active = index
-  b.source.noteOn(0)
-
-  setTimeout(function() {
-    onEnded()
-  }. b.buffer.duration * 1e3 - 150)
 }
 
-function onEnded() {
-  
+function replay() {
+  buffers.forEach(function(b, index) {
+    b.source = audio.context.createBufferSource()
+    b.source.buffer = b.buffer
+    b.gain = audio.context.createGainNode()
+    b.gain.connect(audio.gain)
+    b.gain.gain.value = .4
+    b.source.connect(b.gain)
+   // console.log('replay', b.time ,b.buffer.duration, audio.context.currentTime)
+    b.source.noteOn(b.time + b.buffer.duration - audio.context.currentTime)
+    b.time = audio.context.currentTime
+  })
+  setTimeout(function() {
+    replay()
+  }, buffers[0].buffer.duration * 1000  - 150)
 }
 
 audio.setProgress = function(val) {
@@ -67,14 +87,13 @@ audio.setComplete = function() {
 }
 
 
-
 function loadBuffer(layer, i) {
   buffers[i] = null
   var req = new XMLHttpRequest();
-  req.open('GET', path, true);
+  req.open('GET', layer.audio, true);
   req.responseType = 'arraybuffer';
   req.onload = function() {
-      context.decodeAudioData(req.response, function(buffer) {
+      audio.context.decodeAudioData(req.response, function(buffer) {
          if (!buffer) {
              return console.error('Error decoding file:', path);
          }
