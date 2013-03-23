@@ -70,6 +70,28 @@ function layerProgress() {
 
 
 function startGame() {
+
+  level.layers = level.layers.map(function(l) {
+    l.tiles = l.tiles.map(function(t) {
+      t.l = parseInt(t.l)
+      t.t = parseInt(t.t)
+      t.b = parseInt(t.b)
+      t.r = parseInt(t.r)
+
+      if (l.x) {
+        t.x += l.x
+        t.l += l.x
+      }
+      if (l.y) {
+        t.y += l.y
+        t.t += l.y
+      }
+      return t
+    })
+
+    return l
+  })
+
     console.debug('Total levels: %s', level.layers.length);
     currentLayer = 0;
     setupLayer(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
@@ -104,7 +126,7 @@ function preloadImages(level) {
 
 var currentLayer = -1;
 
-var level = {
+var firstLevel = {
   "name": "twinkle",
   "layers": [
     {
@@ -146,11 +168,15 @@ var level = {
           "b": "15"
         }
       ],
+      x: 90,
+      y: 90,
       "src": "twinkle/star.png",
       "audio": "twinkle/twink1_lead.mp3"
     }
   ]
 }
+
+var level = JSON.parse(JSON.stringify(firstLevel))
 
 /*
 var level = {

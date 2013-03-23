@@ -89,6 +89,11 @@ audio.setComplete = function() {
   buffers[audio.active].gain.gain.value = 1
 }
 
+audio.stopAll = function() {
+  buffers.forEach(function() {
+    buffers.source.noteOff()
+  })
+}
 
 function loadBuffer(layer, i) {
   buffers[i] = null
