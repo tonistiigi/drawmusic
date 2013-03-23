@@ -116,7 +116,7 @@ var level = {
         {
           "x": 100,
           "y": 102,
-         "src": "twinkle/tile1.png",
+          "src": "twinkle/tile1.png",
           "l": "95",
           "t": "0",
           "r": "50",
@@ -134,7 +134,7 @@ var level = {
         {
           "x": 190,
           "y": 85,
-         "src": "twinkle/tile3.png",
+          "src": "twinkle/tile3.png",
           "l": "203",
           "t": "85",
           "r": "122",
@@ -143,60 +143,24 @@ var level = {
         {
           "x": 319,
           "y": 90,
-          "src": "tile001.png",
+          "src": "twinkle/tile4.png",
           "l": "247",
           "t": "96",
           "r": "68",
           "b": "87"
         },
         {
-          "x": 252,
-          "y": 179,
-          "src": "tile001.png",
-          "l": 0,
-          "t": 0,
-          "r": 0,
-          "b": 0
-        },
-        {
-          "x": 288,
-          "y": 283,
-          "src": "tile001.png",
-          "l": 0,
-          "t": 0,
-          "r": 0,
-          "b": 0
-        },
-        {
-          "x": 185,
-          "y": 248,
-          "src": "tile001.png",
-          "l": 0,
-          "t": 0,
-          "r": 0,
-          "b": 0
-        },
-        {
-          "x": 98,
-          "y": 318,
-          "src": "tile001.png",
-          "l": 0,
-          "t": 0,
-          "r": 0,
-          "b": 0
-        },
-        {
-          "x": 98,
-          "y": 210,
-          "src": "tile001.png",
-          "l": 0,
-          "t": 0,
-          "r": 0,
-          "b": 0
+          "x": "250",
+          "y": "181",
+          "src": "twinkle/tile5.png",
+          "l": "1",
+          "t": "145",
+          "r": "300",
+          "b": "180"
         }
       ],
       "src": "twinkle/star.png",
-      "audio": "audio.mp3"
+      "audio": "twinkle/twink1_lead.mp3"
     }
   ]
 }
