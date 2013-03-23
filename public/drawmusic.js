@@ -213,7 +213,7 @@ var firstLevel = {
       ],
       x: 390,
       y: 405,
-      "src": "twinkle/circle.png",
+      "src": "twinkle/earth.png",
       "audio": "twinkle/twink1_drums.mp3"
     },
     {
@@ -293,7 +293,7 @@ var firstLevel = {
       ],
       x: 718,
       y: 130,
-      "src": "twinkle/moon.png",
+      "src": "twinkle/zzz_moon.png",
       "audio": "twinkle/twink1_bass.mp3"
     },
     {
@@ -391,7 +391,7 @@ var firstLevel = {
       ],
       x: 93,
       y: 113,
-      "src": "twinkle/star_mf.png",
+      "src": "twinkle/twinkle_star.png",
       "audio": "twinkle/twink1_lead.mp3"
     }
   ]

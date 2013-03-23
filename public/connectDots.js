@@ -103,8 +103,15 @@ function isNextPoint(x, y) {
 				console.log("picture is complete");
         $('#canvas .points').empty()
 
+
         clearCanvas();
         lastTouch = null
+
+        var img = $('<img>')
+        img.attr('src', level.layers[currentLayer].src)
+        img.css({position: 'absolute', left: level.layers[currentLayer].x, top: level.layers[currentLayer].y})
+        $('#canvas .ready').append(img)
+
         setTimeout(function() {
           layerComplete()
           lastTouch = null
