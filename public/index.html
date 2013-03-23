@@ -30,7 +30,7 @@
          });
 
          $('#endGame a')
-           .click(function() {
+           .on('touchstart mousedown', function() {
            endGame();
            return false;
          });
@@ -43,7 +43,7 @@
            $('#cheat').hide();
          });
          
-            $('#cheat a').click(function() {
+            $('#cheat a').on('touchstart mousedown', function() {
                 game.trigger('end');
             });
      });
