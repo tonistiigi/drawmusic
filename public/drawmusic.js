@@ -106,6 +106,10 @@ function startGame() {
     initCanvas();
 }
 
+function resetGame() {
+
+}
+
 function endGame() {
     console.debug('Game ended');
     game.trigger('end');

@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>DrawMusic v.001</title>
+    <title>DrawMusic v.002</title>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="connectDots.js"></script>
     <script type="text/javascript" src="audio.js"></script>
@@ -10,17 +10,18 @@
   <body>
   
   <script type="text/javascript">
-    var animationDelay = 150;
+    var animationDelay = 250;
      $(document).ready(function() {
           preloadResources();
 
-
+         
          $('#startGame a')
            .on('touchstart mousedown', function() {
-           $(this).parent()
-             .hide();
-           $('#feedback')
-             .hide();
+           
+           $('#canvas').css('background-image', 'url(\'images/background_game.png\')');
+           $(this).parent().fadeOut(animationDelay);
+           $('#headerContainer')
+             .fadeIn(animationDelay);
            
            $('#cheat').show();
            
@@ -36,7 +37,7 @@
 
 
          game.on('end', function() {
-           $('#playAgain').fadeIn(animationDelay, function() {});
+           $('#feedback').fadeIn(animationDelay);
            
            
            $('#cheat').hide();
@@ -53,6 +54,7 @@
          .fadeOut(animationDelay, function() {
          $('#startGame')
            .fadeIn(animationDelay);
+           
        });
      });
 
@@ -64,8 +66,35 @@
       -webkit-user-select: none;
       padding: 0;
       margin: 0;
+      font-family: Helvetica;
     }
     
+    #headerContainer {
+      padding-left: 224px;   /* LC width */
+      padding-right: 224px;  /* RC width */
+      
+      background-color: rgba(0, 0, 0, 0.2);
+      height: 76px;
+      
+     display: none;
+    }
+    #headerContainer .column {
+      position: relative;
+      float: left;
+    }
+    #center {
+      width: 100%;
+      text-align: center;
+    }
+    #left {
+      width: 224px;          /* LC width */
+      right: 224px;          /* LC width */
+      margin-left: -100%;
+    }
+    #right {
+      width: 224px;          /* RC width */
+      margin-right: -224px;  /* RC width */
+    }
     
     #main {
     }
@@ -92,25 +121,26 @@
     }
     
     #startGame img {
-        width: 30%;
-        height: auto;
-        margin-top: 100px;
+      position: absolute;
+      top: 200px;
+      left: 405px;
     }
     
-    #playAgain {
-        margin-left: 20px;
-        display: none;
+    #drawAgain {
+    }
+    
+    #feedback {
+      display: none;
+    }
+    
+    #nextLevel {
     }
     
     #cheat {
         text-align: right;
-        display: none;
     }
-    
-    #feedback {
-        display: none;
-    }
-    
+
+
     /* Canvas and drawing */
     #canvas {
       margin-top: 100px;
@@ -118,15 +148,14 @@
       height: 748px;
       margin: 0 auto;
       position: relative;
-      background: url('temp_bg.jpg');
-      border: 1px solid #c00;
-      position:absolute;
-	    left:12%
+      background: url('images/start_bg-01.png');
+      position:relative;
 
+      transition: background 0.25s linear;
     }
     .point {
       position: absolute;
-	border: 1px solid #0c0;
+	border: 1px solid #eee;
 	-webkit-user-select: none;
 	cursor: default;
 	display: block;
@@ -134,16 +163,19 @@
 	height: 20px;
 	border-radius: 30px;
 	font-size: 20px;
-	color: #fff;
+	color: #000;
+  font-weight: bold;
 	line-height: 18px;
 	text-align: center;
-	background: #000;
+	background: #fff;
+  padding-top: 3px;
     }
 	.point:hover{color:#ccc;text-decoration:none;background:#333}
     .outline {
       position: absolute;
       background-repeat: no-repeat;
     }
+    
     #canvasid {
       position: absolute;
       top: 0px;
@@ -163,20 +195,35 @@
             
           </div>
           
-          <div id="loading">Loading...</div>
-          <div id="playAgain">
-              <a href="#"><img src="play_again.png" /></a>
-              Would you like to buy our "Bird is the Word" version of this game?
+         
+          <div id="headerContainer">
+            <div id="center" class="column">
+              <div id="loading">Loading...</div>
+              <div id="feedback">
+                <img src="images/great_finish-01.png" />
+              </div>
+              &nbsp;
+            </div>
+            <div id="left" class="column">
+              <div id="drawAgain">
+                <a href="#"><img src="images/again_btn-01.png" /></a>
+              </div>
+              &nbsp;
+            </div>
+            <div id="right" class="column">
+              <div id="nextLevel">
+                <img src="images/next_btn-01.png" />
+              </div>
+              <div id="cheat">
+                <a href="#">GOURANGA</a>
+              </div>
+              &nbsp;
+            </div>
           </div>
           
-          <div class="right" id="cheat">
-              <a href="#">GOURANGA</a>
-          </div>
           
           <div class="center" id="startGame">
-          <a href="#"><img src="play.png"/></a><br />
-          
-          
+            <a href="#"><img src="images/play_btn.png"/></a>
           </div>
       
           <div class="points"></div>

@@ -39,8 +39,8 @@ $(document).ready(function() {
     var offset = $('#canvas').offset()
     // console.log('mm', offset, e.originalEvent.pageX - offset.left, e.originalEvent.pageY - offset.top)
     var parentOffset = $(this).offset();
-  	var relX = e.pageX - parentOffset.left;
-    var relY = e.pageY - parentOffset.top;
+  	var relX = e.originalEvent.pageX - parentOffset.left;
+    var relY = e.originalEvent.pageY - parentOffset.top;
 
 	  if (!correctSelection && isdown && currentPoint){
 
