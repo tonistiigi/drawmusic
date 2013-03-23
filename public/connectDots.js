@@ -11,8 +11,10 @@ var points
 
 $(document).ready(function() {
 
-  $('#canvas').mousedown(function() {
+  $('#canvas').on('mousedown', function() {
     isdown = true
+
+    console.log('m11')
   })
   $('#canvas').mouseup(function() {
     isdown = false
@@ -20,8 +22,6 @@ $(document).ready(function() {
 
   $('#canvas').on('touchstart', function() {
     isdown = true
-
-    console.log('m11')
   })
   $('#canvas').on('touchend touchcancel', function() {
     isdown = true
@@ -76,7 +76,7 @@ function drawPoint(top, left) {
   t.addClass("point")
   t.html("<div style='width:15px;height:15px;border-radius:5px;font-size:12px;color:#fff;line-height:15px;text-align:center;background:#000'>" + pointNum + "</div>");
   pointNum++;
-  $("#canvas")
+  $("#canvas .points")
     .append(t);
 }
 
