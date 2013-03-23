@@ -4,37 +4,57 @@ var layers
 var activelayer
 var activepoint
 
+var win
+
 function update() {
   var json = $('#raw').val().replace(/\n/g, ' ')
 
   json = eval('(' + json + ')')
 
-  $('#layers').empty()
+  if (!win) {
+    win = window.open()
+  }
+
+  $(win.document.body).append($('<div id="layers"></div>'))
+
+  $(win.document.body).append($('style').clone())
+  
+  $(win.document.body).find('#layers').empty()
 
   name = json.name
 
   layers = json.layers.map(function(l) {
 
     var layer = $('<div class="layer"></div>')
-    $('#layers').append(layer)
+    $(win.document.body).find('#layers').append(layer)
 
     layer.on('click', function() {
-      $('layer.active').removeClass('active')
+      $('.layer.active').removeClass('active')
       layer.addClass('active')
       activelayer = l
       activateLayer(l)
     })
 
     l.tiles.forEach(function(t, i) {
-      var p = $('<div class="point">'+ (i+1) +' X: <input class="x"> Y: <input class="y"> <br>\
-       L <input class="l"> T <input class="t">  W <input class="r"> H <input class="b"> \
+      var p = $('<div class="point">'+ (i+1) +' X: <input class="x" type="number"> Y: <input class="y"type="number"> <br>\
+       L <input class="l" type="number"> T <input class="t" type="number">  W <input class="r" type="number"> H <input class="b" type="number"> \
       </div>')
-      p.find('.x').val(t.x)
-      p.find('.x').on('change', function(e) {
-        t.x = e.target.value
-        output()
+
+      ;['x', 'y', 't', 'r', 'b', 'l'].forEach(function(c) {
+        p.find('.' + c).val(t[c])
+        p.find('.' + c).on('change', function(e) {
+          t[c] = e.target.value
+          output()
+          activateLayer()
+        })
+        p.find('.' + c).on('keyup', function(e) {
+          t[c] = e.target.value
+          output()
+          activateLayer()
+        })
+
       })
-      p.find('.y').val(t.y)
+      /*p.find('.y').val(t.y)
       p.find('.y').on('change', function(e) {
         t.y = e.target.value
         output()
@@ -64,7 +84,7 @@ function update() {
         t.l = e.target.value
         output()
       })
-
+*/
 
 
 
@@ -88,6 +108,7 @@ function update() {
 }
 
 function activateLayer(l) {
+  l = activelayer
   if (!l) return;
   $('#board').empty();
 

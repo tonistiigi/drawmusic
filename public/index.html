@@ -1,9 +1,175 @@
 <html>
   <head>
+    <title>DrawMusic v.001</title>
     <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="connectDots.js"></script>
     <script type="text/javascript" src="audio.js"></script>
+    <script type="text/javascript" src="canvas.js"></script>
     <script type="text/javascript" src="drawmusic.js"></script>
   </head>
   <body>
+  
+  <script type="text/javascript">
+    var animationDelay = 150;
+     $(document).ready(function() {
+          preloadResources();
+
+
+         $('#startGame a')
+           .on('touchstart mousedown', function() {
+           $(this).parent()
+             .hide();
+           $('#feedback')
+             .hide();
+           
+           $('#cheat').show();
+           
+           startGame();
+           return false;
+         });
+
+         $('#endGame a')
+           .click(function() {
+           endGame();
+           return false;
+         });
+
+
+         game.on('end', function() {
+           $('#playAgain').fadeIn(animationDelay, function() {});
+           
+           
+           $('#cheat').hide();
+         });
+         
+            $('#cheat a').click(function() {
+                game.trigger('end');
+            });
+     });
+
+     $(window)
+       .load(function() {
+       $('#loading')
+         .fadeOut(animationDelay, function() {
+         $('#startGame')
+           .fadeIn(animationDelay);
+       });
+     });
+
+  </script>
+  
+  <style type="text/css">
+    /* Common */
+    html, body {
+      -webkit-user-select: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    
+    #main {
+    }
+    
+    #loading {
+        font-size: 5em;
+        text-align: center;
+        padding: 30px;
+        font-family: Helvetica;
+    }
+    
+    .center {
+        text-align: center;
+    }
+    
+    .right {
+        text-align: right;
+    }
+    
+    /* Game buttons */
+    
+    #startGame {
+        
+    }
+    
+    #startGame img {
+        width: 30%;
+        height: auto;
+        margin-top: 100px;
+    }
+    
+    #playAgain {
+        margin-left: 20px;
+        display: none;
+    }
+    
+    #cheat {
+        text-align: right;
+        display: none;
+    }
+    
+    #feedback {
+        display: none;
+    }
+    
+    /* Canvas and drawing */
+    #canvas {
+      margin-top: 100px;
+      width: 1024px;
+      height: 748px;
+      margin: 0 auto;
+      position: relative;
+      background: url('temp_bg.jpg');
+      
+    }
+    .point {
+      position: absolute;
+      border: 1px solid #0c0;
+      -webkit-user-select: none;
+    }
+    .outline {
+      position: absolute;
+      background-repeat: no-repeat;
+    }
+    #canvasid {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      pointer-events: none;
+    }
+    
+    
+    
+  </style>
+    <div id="main">
+  
+    
+        <div id="canvas">
+          <div id="outlines">
+            
+            
+          </div>
+          
+          <div id="loading">Loading...</div>
+          <div id="playAgain">
+              <a href="#"><img src="play_again.png" /></a>
+              Would you like to buy our "Bird is the Word" version of this game?
+          </div>
+          
+          <div class="right" id="cheat">
+              <a href="#">GOURANGA</a>
+          </div>
+          
+          <div class="center" id="startGame">
+          <a href="#"><img src="play.png"/></a><br />
+          
+          
+          </div>
+      
+          <div class="points"></div>
+      
+          <canvas id="canvasid" width="1024" height="748"></canvas>
+        </div>
+    
+    </div>
   </body>
 </html>

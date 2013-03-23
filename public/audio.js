@@ -40,6 +40,7 @@ audio.play = function() {
     b.gain = audio.context.createGainNode()
     b.gain.connect(audio.gain)
     b.gain.gain.value = 0
+    b.vol = 0
     b.source.connect(b.gain)
     b.source.noteOn(0)
     b.time = audio.context.currentTime
