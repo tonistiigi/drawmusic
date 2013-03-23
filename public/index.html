@@ -1,9 +1,86 @@
 <html>
   <head>
+    <title>DrawMusic v.001</title>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="audio.js"></script>
     <script type="text/javascript" src="drawmusic.js"></script>
+    <link rel="stylesheet" href="buttons.css" type="text/css" media="screen">
   </head>
   <body>
+  
+  <script type="text/javascript">
+        var animationDelay = 150;
+		$(document).ready(function() {
+            
+           
+            
+            
+            preloadResources();
+            
+            
+            
+			$('#startGame').click(function() {
+                $(this).hide();
+                $('.feedback').hide();
+				startGame();
+				return false;
+			});
+			
+			$('#endGame').click(function() {
+				endGame();
+				return false;
+			});
+            
+            
+            game.on('end', function() {
+                $('#startGame').text("Well done! Play again?");
+                $("#startGame").fadeIn(animationDelay, function() {
+                    $('.feedback').show();
+                });
+            });
+            
+            
+            game.on('layerComplete', function() {
+                $('#nextLayer').fadeIn(animationDelay);
+            });
+            
+            $('#nextLayer').click(function() {
+                $(this).hide();
+                startNextLayer();
+                return false;
+            });
+            
+		});
+        
+        $(window).load(function() {
+            $('#loading').fadeOut(animationDelay, function() {
+                 $('#startGame').fadeIn(animationDelay);
+            });
+        });
+  </script>
+  
+  <style type="text/css">
+    #main {
+        text-align: center;
+    }
+    #loading {
+        font-size: 5em;
+    }
+    
+    #startGame {
+    }
+    
+    
+    
+  </style>
+    <div id="main">
+      <div id="loading">Loading...</div>
+	  <button id="startGame" class="thoughtbot" style="display: none; width: 300px;">Let's go!</button><br /><br />
+      <span class="feedback" style="display: none">Would you like to buy our "Bird is the Word" version of this game?</span><br />
+      
+      <a href="#" id="nextLayer" style="display: none;">Next layer (dummy)</a>
+      
+	  <a href="#" id="endGame" style="display: none;">We're done for today</a>
+    </div>
   </body>
 </html>
