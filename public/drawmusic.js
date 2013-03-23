@@ -49,13 +49,18 @@ function setupLayers(points, endImage) {
 }
 */
 function layerComplete() {
+
     console.debug('Layer %s complete.', currentLayer);
     audio.setComplete()
     if (currentLayer < level.layers.length - 1) {
         currentLayer++;
         game.trigger('layerComplete');
+        startNextLayer()
     } else {
+
+
         endGame(); // We only have one level currently
+
     }
 }
 
@@ -207,7 +212,7 @@ var firstLevel = {
         }
       ],
       x: 390,
-      y: 400,
+      y: 405,
       "src": "twinkle/circle.png",
       "audio": "twinkle/twink1_drums.mp3"
     },
@@ -286,8 +291,8 @@ var firstLevel = {
           "b": "67"
         }
       ],
-      x: 600,
-      y: 150,
+      x: 718,
+      y: 130,
       "src": "twinkle/moon.png",
       "audio": "twinkle/twink1_bass.mp3"
     },
@@ -384,8 +389,8 @@ var firstLevel = {
           "b": "71"
         }
       ],
-      x: 90,
-      y: 90,
+      x: 93,
+      y: 113,
       "src": "twinkle/star_mf.png",
       "audio": "twinkle/twink1_lead.mp3"
     }

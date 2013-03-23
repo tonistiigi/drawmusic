@@ -58,8 +58,15 @@ $(document).ready(function() {
 
 function setupLayer(p, src) {
   console.log('setup')
+  startPointSet = false;
+  startpoint = undefined
+  pointNumber = 0;
+  lcomplete = false;
+  isdown = false
+  pointNum = 0
+  $("#canvas .points").empty();
+
   points = p
-  console.log(p)
   for (var i = 0 ;i < p.length; i++) {
 		var xx = p[i].x
 		var yy = p[i].y
@@ -67,6 +74,7 @@ function setupLayer(p, src) {
 		drawPoint(yy , xx)
 	}
   nextPoint = p[0];
+
 }
 
 var pointNum = 0;
@@ -91,10 +99,16 @@ function isNextPoint(x, y) {
         if (!nextPoint) nextPoint = points[0]
 			} else {
 				lcomplete = true;
-				layerComplete();
+
 				console.log("picture is complete");
+        $('#canvas .points').empty()
+
         clearCanvas();
-        startNextLayer()
+        lastTouch = null
+        setTimeout(function() {
+          layerComplete()
+          lastTouch = null
+        }, 600)
 			}
 			pointNumber++;
 			return true;
