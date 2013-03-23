@@ -1,4 +1,4 @@
-//Array millega töötame
+//Array millega tÃ¶Ã¶tame
 
 var level = {
   "name": "twinkle",
@@ -77,10 +77,10 @@ $(document).ready(function() {
 	for ( ;i < points.length; i++) {
 		xx = points[i].x
 		yy = points[i].y
-		
+
 		drawPoint("",yy , xx)
-		
-		
+
+
 	}
 	nextPoint = points[0];
 	$("#canvas").mousemove(function(e) {
