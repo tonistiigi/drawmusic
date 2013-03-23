@@ -15,7 +15,7 @@
       preloadResources();
 
      $('#startGame')
-       .click(function() {
+       .on('touchstart mousedown', function() {
        $(this)
          .hide();
        $('.feedback')
@@ -83,6 +83,7 @@
     }
     
     #canvas {
+      margin-top: 100px;
       width: 1024px;
       height: 748px;
       border: 1px solid #c00;

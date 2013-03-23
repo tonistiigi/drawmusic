@@ -1,5 +1,9 @@
 // I know these global fuctions are wrong. I know!
 
+document.ontouchstart = function(e){
+    e.preventDefault();
+}
+
 function preloadResources() {
     audio.on('loaded', function() {
         game.isFullyLoaded(true, null);

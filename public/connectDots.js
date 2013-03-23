@@ -18,9 +18,19 @@ $(document).ready(function() {
     isdown = false
   })
 
-	$("#canvas").mousemove(function(e) {
-    // console.log(e)
-    if (isdown && !lcomplete && isNextPoint(e.offsetX, e.offsetY)) {
+  $('#canvas').on('touchstart', function() {
+    isdown = true
+  })
+  $('#canvas').on('touchend touchcancel', function() {
+    isdown = true
+  })
+
+  var onmove = function(e) {
+    var offset = $('#canvas').offset()
+    // console.log('mm', offset, e.originalEvent.pageX - offset.left, e.originalEvent.pageY - offset.top)
+
+
+    if (isdown && !lcomplete && isNextPoint(e.originalEvent.pageX - offset.left, e.originalEvent.pageY - offset.top)) {
 
       var outline = $('<div class="outline"></div>')
 
@@ -35,7 +45,11 @@ $(document).ready(function() {
 			audio.setProgress(getLayerProgress());
 		}
 
-	});
+	};
+
+
+	$("#canvas").mousemove(onmove);
+	$("#canvas").on('touchmove', onmove);
 
 });
 
