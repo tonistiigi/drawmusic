@@ -94,6 +94,7 @@ audio.stopAll = function() {
     b.source.noteOff(0)
   })
   clearTimeout(audio.timeout);
+  audio.playing = false;
 }
 
 function loadBuffer(layer, i) {
