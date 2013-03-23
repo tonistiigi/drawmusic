@@ -21,7 +21,8 @@ function update() {
     layer.on('click', function() {
       $('layer.active').removeClass('active')
       layer.addClass('active')
-      activelayer = layer
+      activelayer = l
+      activateLayer(l)
     })
 
     l.tiles.forEach(function(t, i) {
@@ -41,7 +42,7 @@ function update() {
       p.on('click', function() {
         $('.point.active').removeClass('active')
         p.addClass('active')
-        activepoint = p
+        activepoint = t
       })
 
 
@@ -56,9 +57,42 @@ function update() {
 
 }
 
+function activateLayer(l) {
+  $('#board').empty();
+
+  var layer = $('<div id="al"></div>')
+  console.log(l)
+  var img = $('<img src="' + l.src + '">')
+  layer.append(img)
+
+  var points = $('<div class="aps"><div>')
+
+  l.tiles.forEach(function(p, i) {
+    var ap = $('<div class="ap">' + (i+1) + '</div>')
+    ap.css({left: p.x, top: p.y})
+    points.append(ap)
+  })
+    layer.append(points)
+  $('#board').append(layer)
+}
+
 function output() {
   var json = {}
   json.name = name
   json.layers = layers
   $('#raw').val(JSON.stringify(json, false, 2))
 }
+
+$(function() {
+
+$('#board').on('click', function(e) {
+  console.log(e, activepoint)
+  if (!activepoint) return;
+  activepoint.x = e.clientX
+  activepoint.y = e.clientY
+  output()
+  activateLayer(activelayer)
+})
+
+
+})

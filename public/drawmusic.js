@@ -25,17 +25,65 @@ function endGame() {
 
 
 var level = {
-  name: 'twinkle',
-  layers: [
-    { tiles: [
-      {x: 100, y: 120, src: 'tile001.png'},
-      {x: 100, y: 120, src: 'tile002.png'}
+  "name": "twinkle",
+  "layers": [
+    {
+      "tiles": [
+        {
+          "x": 3,
+          "y": 134,
+          "src": "tile001.png"
+        },
+        {
+          "x": 100,
+          "y": 102,
+          "src": "tile001.png"
+        },
+        {
+          "x": 129,
+          "y": 4,
+          "src": "tile001.png"
+        },
+        {
+          "x": 190,
+          "y": 85,
+          "src": "tile001.png"
+        },
+        {
+          "x": 291,
+          "y": 83,
+          "src": "tile001.png"
+        },
+        {
+          "x": 232,
+          "y": 166,
+          "src": "tile001.png"
+        },
+        {
+          "x": 266,
+          "y": 261,
+          "src": "tile001.png"
+        },
+        {
+          "x": 168,
+          "y": 232,
+          "src": "tile001.png"
+        },
+        {
+          "x": 87,
+          "y": 294,
+          "src": "tile001.png"
+        },
+        {
+          "x": 88,
+          "y": 193,
+          "src": "tile001.png"
+        }
       ],
-      src: 'img.png',
-      audio: 'audio.mp3'
+      "src": "twinkle/star.png",
+      "audio": "audio.mp3"
     }
-  ],
-  duration: 12.3
+  ]
 }
 
 var level = {
