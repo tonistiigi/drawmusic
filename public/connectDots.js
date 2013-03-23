@@ -20,6 +20,8 @@ $(document).ready(function() {
 
   $('#canvas').on('touchstart', function() {
     isdown = true
+
+    console.log('m11')
   })
   $('#canvas').on('touchend touchcancel', function() {
     isdown = true
@@ -42,6 +44,7 @@ $(document).ready(function() {
       outline.css({left: cur.l, top: cur.t, width: cur.r, height: cur.b})
 
 			console.log("line complete", pointNumber);
+      clearCanvas();
 			audio.setProgress(getLayerProgress());
 		}
 
@@ -73,7 +76,7 @@ function drawPoint(top, left) {
 	t.addClass("point")
 	t.html(pointNum);
 	pointNum++;
-	$("#canvas").append(t);
+	$("#canvas .points").append(t);
 }
 
 function isNextPoint(x, y) {
@@ -88,6 +91,7 @@ function isNextPoint(x, y) {
 				lcomplete = true;
 				layerComplete();
 				console.log("picture is complete");
+        clearCanvas();
 			}
 			pointNumber++;
 			return true;

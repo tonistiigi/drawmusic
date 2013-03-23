@@ -74,6 +74,7 @@ function startGame() {
     currentLayer = 0;
     setupLayer(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
     audio.loadTrack(0)
+    initCanvas();
 }
 
 function endGame() {

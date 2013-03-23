@@ -4,6 +4,7 @@
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="connectDots.js"></script>
     <script type="text/javascript" src="audio.js"></script>
+    <script type="text/javascript" src="canvas.js"></script>
     <script type="text/javascript" src="drawmusic.js"></script>
     <link rel="stylesheet" href="buttons.css" type="text/css" media="screen">
   </head>
@@ -98,6 +99,12 @@
       position: absolute;
       background-repeat: no-repeat;
     }
+    #canvasid {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      pointer-events: none;
+    }
     
   </style>
     <div id="main">
@@ -111,6 +118,11 @@
     
     <div id="canvas">
       <div id="outlines"></div>
+      
+      <div class="points"></div>
+      
+      <canvas id="canvasid" width="1024" height="748"></canvas>
+      
     </div>
     </div>
   </body>
