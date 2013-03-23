@@ -1,5 +1,6 @@
 
 var lastTouch = null;
+var mouseUpDetect = false
 
 function initCanvas() {
   var canvas = $('#canvasid');
@@ -20,6 +21,8 @@ function initCanvas() {
   });
 
   $('#canvas').on('touchend mouseup', function(e) {
+    mouseUpDetect = true
+
     lastTouch = null;
     // Store the current transformation matrix
     context.save();
@@ -61,7 +64,9 @@ function clearCanvas() {
   var context = canvas.get(0).getContext('2d');
   context.clearRect(0, 0, canvas.width(), canvas.height());
   lastTouch = null
+  mouseUpDetect = false
   setTimeout(function() {
+    if (!mouseUpDetect)
     lastTouch = 0;
   }, 500)
 }

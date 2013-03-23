@@ -129,9 +129,10 @@ function isNextPoint(x, y) {
         img.attr('src', level.layers[currentLayer].src)
         img.css({position: 'absolute', left: level.layers[currentLayer].x, top: level.layers[currentLayer].y})
         $('#canvas .ready').append(img)
-
+        
         setTimeout(function() {
           layerComplete()
+
           lastTouch = null
         }, 600)
 			}
