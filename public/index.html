@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>DrawMusic v.001</title>
+    <title>DrawMusic v.002</title>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="connectDots.js"></script>
     <script type="text/javascript" src="audio.js"></script>
@@ -36,7 +36,7 @@
 
 
          game.on('end', function() {
-           $('#playAgain').fadeIn(animationDelay, function() {});
+           $('#drawAgain').fadeIn(animationDelay, function() {});
            
            
            $('#cheat').hide();
@@ -66,6 +66,29 @@
       margin: 0;
     }
     
+    #headerContainer {
+      padding-left: 224px;   /* LC width */
+      padding-right: 224px;  /* RC width */
+      
+      background-color: rgba(0, 0, 0, 0.2);
+      height: 76px;
+    }
+    #headerContainer .column {
+      position: relative;
+      float: left;
+    }
+    #center {
+      width: 100%;
+    }
+    #left {
+      width: 224px;          /* LC width */
+      right: 224px;          /* LC width */
+      margin-left: -100%;
+    }
+    #right {
+      width: 224px;          /* RC width */
+      margin-right: -224px;  /* RC width */
+    }
     
     #main {
     }
@@ -97,18 +120,19 @@
         margin-top: 100px;
     }
     
-    #playAgain {
-        margin-left: 20px;
-        display: none;
+    #drawAgain {
     }
     
     #cheat {
         text-align: right;
-        display: none;
     }
     
     #feedback {
-        display: none;
+        text-align: center;
+    }
+    
+    #nextLevel {
+      text-align: right;
     }
     
     /* Canvas and drawing */
@@ -118,7 +142,7 @@
       height: 748px;
       margin: 0 auto;
       position: relative;
-      background: url('temp_bg.jpg');
+      background: url('images/background.png');
       
     }
     .point {
@@ -149,20 +173,38 @@
             
           </div>
           
-          <div id="loading">Loading...</div>
-          <div id="playAgain">
-              <a href="#"><img src="play_again.png" /></a>
-              Would you like to buy our "Bird is the Word" version of this game?
+          <div id="headerContainer">
+            <div id="center" class="column">
+              <div id="loading">Loading...</div>
+              <div id="feedback">
+                <img src="images/great_finish-01.png" />
+              </div>
+            </div>
+            <div id="left" class="column">
+              <div id="drawAgain">
+                <a href="#"><img src="images/again_btn-01.png" /></a>
+              </div>
+            </div>
+            <div id="right" class="column">
+              <div id="nextLevel">
+                <img src="images/next_btn-01.png" />
+              </div>
+            </div>
           </div>
+          
+          
+          
+          
+          
+          
+          
           
           <div class="right" id="cheat">
               <a href="#">GOURANGA</a>
           </div>
           
           <div class="center" id="startGame">
-          <a href="#"><img src="play.png"/></a><br />
-          
-          
+            <a href="#"><img src="play.png"/></a>
           </div>
       
           <div class="points"></div>
