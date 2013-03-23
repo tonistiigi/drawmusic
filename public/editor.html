@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="audio.js"></script>
+    <script type="text/javascript" src="editor.js"></script>
+    <style type="text/css">
+    #board {
+      border: 1px solid #000;
+      width: 1024px;
+      height: 748px;
+      float: left;
+    }
+    #raw {
+      float: left;
+      width: 400px;
+      height: 748px;
+    }
+    #layers {
+      border: 1px solid #c00;
+      clear: left;
+    }
+    .layer {
+      width: 200px;
+      padding: 20px;
+      border: 3px solid #ccc;
+    }
+    .layer.active {
+      border: 3px solid #c00;
+    }
+    
+    .point {
+      border: 2p solid #0c0;
+      padding: 5px;
+      
+    }
+    .point.active {
+      background: #ddd;
+    }
+    .point input {
+      width: 40px;
+    }
+    </style>
+  </head>
+  
+  
+  <body>
+    <div id="board">
+    </div>
+    
+    <textarea id="raw">
+      
+      {
+        name: 'twinkle',
+        layers: [
+          { tiles: [
+            {x: 100, y: 120, src: 'tile001.png'},
+            {x: 100, y: 120, src: 'tile002.png'}
+            ],
+            src: 'img.png',
+            audio: 'audio.mp3'
+          }
+        ],
+        duration: 12.3
+      }
+      
+    </textarea>
+    <a href="javascript:update()">update</a>
+    
+    <div id="layers"></div>
+  </body>
+</html>
