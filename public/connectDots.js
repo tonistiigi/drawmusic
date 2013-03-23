@@ -102,7 +102,7 @@ function drawPoint(top, left) {
 	t.addClass("point")
 	t.text(pointNum+1);
 	pointNum++;
-	$("#canvas").append(t);
+	$("#canvas .points").append(t);
 }
 
 function isNextPoint(x, y) {
@@ -118,6 +118,8 @@ function isNextPoint(x, y) {
 
 				console.log("picture is complete");
         $('#canvas .points').empty()
+
+        $('#canvas .outlines').empty()
 
 
         clearCanvas();
