@@ -6,56 +6,45 @@
     <script type="text/javascript" src="audio.js"></script>
     <script type="text/javascript" src="canvas.js"></script>
     <script type="text/javascript" src="drawmusic.js"></script>
-    <link rel="stylesheet" href="buttons.css" type="text/css" media="screen">
   </head>
   <body>
   
   <script type="text/javascript">
     var animationDelay = 150;
-		$(document).ready(function() {
-      preloadResources();
-
-     $('#startGame')
-       .on('touchstart mousedown', function() {
-       $(this)
-         .hide();
-       $('.feedback')
-         .hide();
-       startGame();
-       return false;
-     });
-
-     $('#endGame')
-       .click(function() {
-       endGame();
-       return false;
-     });
+     $(document).ready(function() {
+          preloadResources();
 
 
-     game.on('end', function() {
-       $('#startGame')
-         .text("Well done! Play again?");
-       $("#startGame")
-         .fadeIn(animationDelay, function() {
-         $('.feedback')
-           .show();
-       });
-     });
+         $('#startGame a')
+           .on('touchstart mousedown', function() {
+           $(this).parent()
+             .hide();
+           $('#feedback')
+             .hide();
+           
+           $('#cheat').show();
+           
+           startGame();
+           return false;
+         });
+
+         $('#endGame a')
+           .click(function() {
+           endGame();
+           return false;
+         });
 
 
-     game.on('layerComplete', function() {
-       $('#nextLayer')
-         .fadeIn(animationDelay);
-     });
-
-     $('#nextLayer')
-       .click(function() {
-       $(this)
-         .hide();
-       startNextLayer();
-       return false;
-     });
-
+         game.on('end', function() {
+           $('#playAgain').fadeIn(animationDelay, function() {});
+           
+           
+           $('#cheat').hide();
+         });
+         
+            $('#cheat a').click(function() {
+                game.trigger('end');
+            });
      });
 
      $(window)
@@ -70,25 +59,63 @@
   </script>
   
   <style type="text/css">
-  body {
-    -webkit-user-select: none;
-  }
-    #main {
-        text-align: center;
+    /* Common */
+    body {
+      -webkit-user-select: none;
     }
+    
+    
+    #main {
+    }
+    
     #loading {
         font-size: 5em;
     }
     
-    #startGame {
+    .center {
+        text-align: center;
     }
     
+    .right {
+        text-align: right;
+    }
+    
+    /* Game buttons */
+    
+    #startGame {
+        
+    }
+    
+    #startGame img {
+        width: 30%;
+        height: auto;
+        margin-top: 100px;
+    }
+    
+    #playAgain {
+        margin-left: 20px;
+        display: none;
+    }
+    
+    #cheat {
+        text-align: right;
+        display: none;
+    }
+    
+    #feedback {
+        display: none;
+    }
+    
+    /* Canvas and drawing */
     #canvas {
       margin-top: 100px;
       width: 1024px;
       height: 748px;
       border: 1px solid #c00;
-      position:absolute;
+      margin: 0 auto;
+      position: relative;
+      background: blue url('temp_bg.jpg');
+      
     }
     .point {
       position: absolute;
@@ -106,24 +133,39 @@
       pointer-events: none;
     }
     
+    
+    
   </style>
     <div id="main">
-      <div id="loading">Loading...</div>
-	  <button id="startGame" class="thoughtbot" style="display: none; width: 300px;">Let's go!</button><br /><br />
-      <span class="feedback" style="display: none">Would you like to buy our "Bird is the Word" version of this game?</span><br />
-      
-      <a href="#" id="nextLayer" style="display: none;">Next layer (dummy)</a>
-      
-	  <a href="#" id="endGame" style="display: none;">We're done for today</a>
+  
     
-    <div id="canvas">
-      <div id="outlines"></div>
+        <div id="canvas">
+          <div id="outlines">
+            
+            
+          </div>
+          
+          <div id="loading">Loading...</div>
+          <div id="playAgain">
+              <a href="#"><img src="play_again.png" /></a>
+              Would you like to buy our "Bird is the Word" version of this game?
+          </div>
+          
+          <div class="right" id="cheat">
+              <a href="#">GOURANGA</a>
+          </div>
+          
+          <div class="center" id="startGame">
+          <a href="#"><img src="play.png"/></a><br />
+          
+          
+          </div>
       
-      <div class="points"></div>
+          <div class="points"></div>
       
-      <canvas id="canvasid" width="1024" height="748"></canvas>
-      
-    </div>
+          <canvas id="canvasid" width="1024" height="748"></canvas>
+        </div>
+    
     </div>
   </body>
 </html>
