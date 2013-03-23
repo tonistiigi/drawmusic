@@ -10,13 +10,15 @@
   <body>
   
   <script type="text/javascript">
-    var animationDelay = 150;
+    var animationDelay = 250;
      $(document).ready(function() {
           preloadResources();
 
          
          $('#startGame a')
            .on('touchstart mousedown', function() {
+           
+           $('#canvas').css('background-image', 'url(\'images/background_game.png\')');
            $(this).parent().fadeOut(animationDelay);
            $('#headerContainer')
              .fadeIn(animationDelay);
@@ -35,7 +37,7 @@
 
 
          game.on('end', function() {
-           $('#drawAgain').fadeIn(animationDelay);
+           $('#feedback').fadeIn(animationDelay);
            
            
            $('#cheat').hide();
@@ -127,6 +129,7 @@
     }
     
     #feedback {
+      display: none;
     }
     
     #nextLevel {
@@ -145,6 +148,7 @@
       position: relative;
       background: url('images/start_bg-01.png');
       
+      transition: background 0.25s linear;
     }
     .point {
       position: absolute;
@@ -182,29 +186,25 @@
               <div id="feedback">
                 <img src="images/great_finish-01.png" />
               </div>
+              &nbsp;
             </div>
             <div id="left" class="column">
               <div id="drawAgain">
                 <a href="#"><img src="images/again_btn-01.png" /></a>
               </div>
+              &nbsp;
             </div>
             <div id="right" class="column">
               <div id="nextLevel">
                 <img src="images/next_btn-01.png" />
               </div>
+              <div id="cheat">
+                <a href="#">GOURANGA</a>
+              </div>
+              &nbsp;
             </div>
           </div>
           
-          
-          
-          
-          
-          
-          
-          
-          <div class="right" id="cheat">
-              <a href="#">GOURANGA</a>
-          </div>
           
           <div class="center" id="startGame">
             <a href="#"><img src="images/play_btn.png"/></a>
