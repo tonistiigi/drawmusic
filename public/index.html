@@ -119,13 +119,27 @@
       margin: 0 auto;
       position: relative;
       background: url('temp_bg.jpg');
-      
+      border: 1px solid #c00;
+      position:absolute;
+	    left:12%
+
     }
     .point {
       position: absolute;
-      border: 1px solid #0c0;
-      -webkit-user-select: none;
+	border: 1px solid #0c0;
+	-webkit-user-select: none;
+	cursor: default;
+	display: block;
+	width: 22px;
+	height: 20px;
+	border-radius: 30px;
+	font-size: 20px;
+	color: #fff;
+	line-height: 18px;
+	text-align: center;
+	background: #000;
     }
+	.point:hover{color:#ccc;text-decoration:none;background:#333}
     .outline {
       position: absolute;
       background-repeat: no-repeat;
@@ -166,6 +180,8 @@
           </div>
       
           <div class="points"></div>
+          
+          <div class="ready"></div>
       
           <canvas id="canvasid" width="1024" height="748"></canvas>
         </div>

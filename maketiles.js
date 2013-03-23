@@ -13,7 +13,7 @@ var json = fs.readFileSync(file)
 json = JSON.parse(json)
 
 
-json.layers.forEach(function(l) {
+json.layers.forEach(function(l, ii) {
   var src = fs.readFileSync(path.join(path.dirname(file), l.src))
   l.tiles.forEach(function(t, i) {
     //console.log('l', src.length)
@@ -21,7 +21,7 @@ json.layers.forEach(function(l) {
     if (!t.r || !t.b) return
     spawn('convert', [path.join(path.dirname(file), l.src), '-crop',
     t.r + 'x' + t.b + '+' + t.l + '+' + t.t, '+repage',
-    path.dirname(path.join(path.dirname(file), l.src)) + '/tile' + i + '.png'])
+    path.dirname(path.join(path.dirname(file), l.src)) + '/tile' + ii + '_' + i +'.png'])
 
   })
 })
