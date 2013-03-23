@@ -31,7 +31,7 @@ game.isFullyLoaded = function(audio, images){
     }
 
 }
-
+/*
 function setupLayers(points, endImage) {
     // NOT MY CODE TO WRITE, remove as you want (Indrek)
     console.debug('Setting up new layer with first point as x: %s y: %s with endImage: %s',
@@ -43,7 +43,7 @@ function setupLayers(points, endImage) {
       layerComplete();
     }, 4000)
 }
-
+*/
 function layerComplete() {
     console.debug('Layer %s complete.', currentLayer);
     audio.setComplete()
@@ -57,7 +57,7 @@ function layerComplete() {
 
 function startNextLayer() {
   audio.loadTrack(currentLayer)
-  setupLayers(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
+  setupLayer(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
 }
 
 function layerProgress() {
@@ -68,7 +68,7 @@ function layerProgress() {
 function startGame() {
     console.debug('Total levels: %s', level.layers.length);
     currentLayer = 0;
-    setupLayers(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
+    setupLayer(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
     audio.loadTrack(0)
 }
 
@@ -105,9 +105,9 @@ var level = {
     {
       "tiles": [
         {
-          "x": 504,
-          "y": 602,
-          "src": "twinkle/tile0.png",
+          "x": 4,
+          "y": 148,
+          "src": "tile001.png",
           "l": "0",
           "t": "102",
           "r": "115",
@@ -116,16 +116,16 @@ var level = {
         {
           "x": 100,
           "y": 102,
-          "src": "twinkle/tile1.png",
+          "src": "tile001.png",
           "l": "95",
           "t": "0",
           "r": "50",
           "b": "115"
         },
         {
-          "x": 409,
-          "y": 532,
-          "src": "twinkle/tile2.png",
+          "x": 142,
+          "y": 7,
+          "src": "tile001.png",
           "l": "140",
           "t": "0",
           "r": "70",
@@ -134,24 +134,24 @@ var level = {
         {
           "x": 190,
           "y": 85,
-          "src": "twinkle/tile3.png",
+          "src": "tile001.png",
           "l": "203",
           "t": "85",
           "r": "122",
           "b": "15"
         },
         {
-          "x": 291,
-          "y": 83,
-          "src": "twinkle/tile4.png",
+          "x": 319,
+          "y": 90,
+          "src": "tile001.png",
           "l": "247",
           "t": "96",
           "r": "68",
           "b": "87"
         },
         {
-          "x": 232,
-          "y": 166,
+          "x": 252,
+          "y": 179,
           "src": "tile001.png",
           "l": 0,
           "t": 0,
@@ -159,28 +159,44 @@ var level = {
           "b": 0
         },
         {
-          "x": 266,
-          "y": 261,
-          "src": "tile001.png"
+          "x": 288,
+          "y": 283,
+          "src": "tile001.png",
+          "l": 0,
+          "t": 0,
+          "r": 0,
+          "b": 0
         },
         {
-          "x": 168,
-          "y": 232,
-          "src": "tile001.png"
+          "x": 185,
+          "y": 248,
+          "src": "tile001.png",
+          "l": 0,
+          "t": 0,
+          "r": 0,
+          "b": 0
         },
         {
-          "x": 87,
-          "y": 294,
-          "src": "tile001.png"
+          "x": 98,
+          "y": 318,
+          "src": "tile001.png",
+          "l": 0,
+          "t": 0,
+          "r": 0,
+          "b": 0
         },
         {
-          "x": 88,
-          "y": 193,
-          "src": "tile001.png"
+          "x": 98,
+          "y": 210,
+          "src": "tile001.png",
+          "l": 0,
+          "t": 0,
+          "r": 0,
+          "b": 0
         }
       ],
       "src": "twinkle/star.png",
-      "audio": "twinkle/twink1_drums.mp3"
+      "audio": "audio.mp3"
     }
   ]
 }

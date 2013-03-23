@@ -2,6 +2,7 @@
   <head>
     <title>DrawMusic v.001</title>
     <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="connectDots.js"></script>
     <script type="text/javascript" src="audio.js"></script>
     <script type="text/javascript" src="drawmusic.js"></script>
     <link rel="stylesheet" href="buttons.css" type="text/css" media="screen">
@@ -78,7 +79,17 @@
     #startGame {
     }
     
-    
+    #canvas {
+      width: 1024px;
+      height: 748px;
+      border: 1px solid #c00;
+      position:absolute;
+    }
+    .point {
+      position: absolute;
+      border: 1px solid #0c0;
+      
+    }
     
   </style>
     <div id="main">
@@ -89,6 +100,10 @@
       <a href="#" id="nextLayer" style="display: none;">Next layer (dummy)</a>
       
 	  <a href="#" id="endGame" style="display: none;">We're done for today</a>
+    
+    <div id="canvas">
+      
+    </div>
     </div>
   </body>
 </html>
