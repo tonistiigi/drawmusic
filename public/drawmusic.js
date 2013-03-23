@@ -17,12 +17,6 @@ function preloadResources() {
 
 }
 
-var audio = $({}); // DUMMY
-
-audio.prepareAudio = function (level) {
-    // DUMMY
-    audio.trigger('loaded');
-}
 
 var game = $({});
 game.audioLoaded = false;
@@ -44,11 +38,15 @@ function setupLayers(points, endImage) {
         points[0].x, points[0].y, endImage);
 
     // When we're done
-    layerComplete();
+
+    setTimeout(function() {
+      layerComplete();
+    }, 4000)
 }
 
 function layerComplete() {
     console.debug('Layer %s complete.', currentLayer);
+    audio.setComplete()
     if (currentLayer < level.layers.length - 1) {
         currentLayer++;
         game.trigger('layerComplete');
@@ -58,7 +56,8 @@ function layerComplete() {
 }
 
 function startNextLayer() {
-    setupLayers(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
+  audio.loadTrack(currentLayer)
+  setupLayers(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
 }
 
 function layerProgress() {
@@ -69,7 +68,8 @@ function layerProgress() {
 function startGame() {
     console.debug('Total levels: %s', level.layers.length);
     currentLayer = 0;
-    setupLayers(level.layers[currentLayer].tiles, null);
+    setupLayers(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
+    audio.loadTrack(0)
 }
 
 function endGame() {
@@ -88,6 +88,11 @@ function preloadImages(level) {
         });
         var img = new Image();
         img.src = layer.src;
+        /*
+        img.onload = function() {
+          loaded++
+          if(loaded >= totalImages)
+        }*/
     });
     game.trigger('imagesLoaded');
 }
@@ -100,34 +105,58 @@ var level = {
     {
       "tiles": [
         {
-          "x": 3,
-          "y": 134,
-          "src": "tile001.png"
+          "x": 504,
+          "y": 602,
+          "src": "twinkle/tile0.png",
+          "l": "0",
+          "t": "102",
+          "r": "115",
+          "b": "48"
         },
         {
           "x": 100,
           "y": 102,
-          "src": "tile001.png"
+          "src": "twinkle/tile1.png",
+          "l": "95",
+          "t": "0",
+          "r": "50",
+          "b": "115"
         },
         {
-          "x": 129,
-          "y": 4,
-          "src": "tile001.png"
+          "x": 409,
+          "y": 532,
+          "src": "twinkle/tile2.png",
+          "l": "140",
+          "t": "0",
+          "r": "70",
+          "b": "102"
         },
         {
           "x": 190,
           "y": 85,
-          "src": "tile001.png"
+          "src": "twinkle/tile3.png",
+          "l": "203",
+          "t": "85",
+          "r": "122",
+          "b": "15"
         },
         {
           "x": 291,
           "y": 83,
-          "src": "tile001.png"
+          "src": "twinkle/tile4.png",
+          "l": "247",
+          "t": "96",
+          "r": "68",
+          "b": "87"
         },
         {
           "x": 232,
           "y": 166,
-          "src": "tile001.png"
+          "src": "tile001.png",
+          "l": 0,
+          "t": 0,
+          "r": 0,
+          "b": 0
         },
         {
           "x": 266,
@@ -151,11 +180,12 @@ var level = {
         }
       ],
       "src": "twinkle/star.png",
-      "audio": "audio.mp3"
+      "audio": "twinkle/twink1_drums.mp3"
     }
   ]
 }
 
+/*
 var level = {
   name: 'twinkle',
   layers: [
@@ -191,7 +221,7 @@ function playMore() {
   }
 
 }
-var interval = setInterval(playMore, 500)
+var interval = setInterval(playMore, 500)*/
 
 
 /*    { tiles: [

@@ -9,54 +9,62 @@
   <body>
   
   <script type="text/javascript">
-        var animationDelay = 150;
+    var animationDelay = 150;
 		$(document).ready(function() {
-            
-           
-            
-            
-            preloadResources();
-            
-            
-            
-			$('#startGame').click(function() {
-                $(this).hide();
-                $('.feedback').hide();
-				startGame();
-				return false;
-			});
-			
-			$('#endGame').click(function() {
-				endGame();
-				return false;
-			});
-            
-            
-            game.on('end', function() {
-                $('#startGame').text("Well done! Play again?");
-                $("#startGame").fadeIn(animationDelay, function() {
-                    $('.feedback').show();
-                });
-            });
-            
-            
-            game.on('layerComplete', function() {
-                $('#nextLayer').fadeIn(animationDelay);
-            });
-            
-            $('#nextLayer').click(function() {
-                $(this).hide();
-                startNextLayer();
-                return false;
-            });
-            
-		});
-        
-        $(window).load(function() {
-            $('#loading').fadeOut(animationDelay, function() {
-                 $('#startGame').fadeIn(animationDelay);
-            });
-        });
+      preloadResources();
+
+     $('#startGame')
+       .click(function() {
+       $(this)
+         .hide();
+       $('.feedback')
+         .hide();
+       startGame();
+       return false;
+     });
+
+     $('#endGame')
+       .click(function() {
+       endGame();
+       return false;
+     });
+
+
+     game.on('end', function() {
+       $('#startGame')
+         .text("Well done! Play again?");
+       $("#startGame")
+         .fadeIn(animationDelay, function() {
+         $('.feedback')
+           .show();
+       });
+     });
+
+
+     game.on('layerComplete', function() {
+       $('#nextLayer')
+         .fadeIn(animationDelay);
+     });
+
+     $('#nextLayer')
+       .click(function() {
+       $(this)
+         .hide();
+       startNextLayer();
+       return false;
+     });
+
+     });
+
+     $(window)
+       .load(function() {
+       $('#loading')
+         .fadeOut(animationDelay, function() {
+         $('#startGame')
+           .fadeIn(animationDelay);
+       });
+     });
+
   </script>
   
   <style type="text/css">
