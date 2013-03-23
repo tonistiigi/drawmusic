@@ -69,6 +69,9 @@
   </script>
   
   <style type="text/css">
+  body {
+    -webkit-user-select: none;
+  }
     #main {
         text-align: center;
     }
@@ -88,7 +91,11 @@
     .point {
       position: absolute;
       border: 1px solid #0c0;
-      
+      -webkit-user-select: none;
+    }
+    .outline {
+      position: absolute;
+      background-repeat: no-repeat;
     }
     
   </style>
@@ -102,7 +109,7 @@
 	  <a href="#" id="endGame" style="display: none;">We're done for today</a>
     
     <div id="canvas">
-      
+      <div id="outlines"></div>
     </div>
     </div>
   </body>

@@ -107,7 +107,7 @@ var level = {
         {
           "x": 4,
           "y": 148,
-          "src": "tile001.png",
+          "src": "twinkle/tile0.png",
           "l": "0",
           "t": "102",
           "r": "115",
@@ -116,7 +116,7 @@ var level = {
         {
           "x": 100,
           "y": 102,
-          "src": "tile001.png",
+         "src": "twinkle/tile1.png",
           "l": "95",
           "t": "0",
           "r": "50",
@@ -125,7 +125,7 @@ var level = {
         {
           "x": 142,
           "y": 7,
-          "src": "tile001.png",
+          "src": "twinkle/tile2.png",
           "l": "140",
           "t": "0",
           "r": "70",
@@ -134,7 +134,7 @@ var level = {
         {
           "x": 190,
           "y": 85,
-          "src": "tile001.png",
+         "src": "twinkle/tile3.png",
           "l": "203",
           "t": "85",
           "r": "122",

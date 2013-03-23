@@ -21,7 +21,17 @@ $(document).ready(function() {
 	$("#canvas").mousemove(function(e) {
     // console.log(e)
     if (isdown && !lcomplete && isNextPoint(e.offsetX, e.offsetY)) {
-			console.log("line complete");
+
+      var outline = $('<div class="outline"></div>')
+
+      var outlines = $('#canvas').find('#outlines')
+      outlines.append(outline)
+
+      var cur = points[pointNumber-2]
+      outline.css('background-image', 'url(' + cur.src + ')')
+      outline.css({left: cur.l, top: cur.t, width: cur.r, height: cur.b})
+
+			console.log("line complete", pointNumber);
 			console.log(getLayerProgress());
 		}
 
