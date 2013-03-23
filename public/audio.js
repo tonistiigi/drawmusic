@@ -90,8 +90,8 @@ audio.setComplete = function() {
 }
 
 audio.stopAll = function() {
-  buffers.forEach(function() {
-    buffers.source.noteOff()
+  buffers.forEach(function(b) {
+    b.source.noteOff(0)
   })
 }
 
