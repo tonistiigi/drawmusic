@@ -70,13 +70,14 @@ function setupLayer(p, src) {
 
 var pointNum = 0;
 function drawPoint(top, left) {
-	var t = $('<div>')
-	t.css("top", top);
-	t.css("left", left)
-	t.addClass("point")
-	t.html(pointNum);
-	pointNum++;
-	$("#canvas .points").append(t);
+  var t = $('<div>')
+  t.css("top", top);
+  t.css("left", left)
+  t.addClass("point")
+  t.html("<div style='width:15px;height:15px;border-radius:5px;font-size:12px;color:#fff;line-height:15px;text-align:center;background:#000'>" + pointNum + "</div>");
+  pointNum++;
+  $("#canvas")
+    .append(t);
 }
 
 function isNextPoint(x, y) {
