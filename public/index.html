@@ -55,6 +55,14 @@
            
            $('#cheat').hide();
          });
+		 
+		 game.on("pointsLoaded",function(){
+			$('.point').css({webkitTransform:"scale(0.1)",webkitTransition:"all 1.5s ease-in-out"})
+			console.log("siia")
+			setTimeout(function(){
+				$('.point').css({webkitTransform:"scale(1.5)"})
+			})
+		 });
          
             $('#cheat a').click(function() {
                 game.trigger('end');
@@ -88,7 +96,7 @@
       
       background-color: rgba(0, 0, 0, 0.2);
       height: 76px;
-	  position:absolute;
+	
       
      display: none;
     }
@@ -99,6 +107,7 @@
     #center {
       width: 100%;
       text-align: center;
+	  
     }
     #left {
       width: 224px;          /* LC width */
@@ -213,6 +222,7 @@
          
           <div id="headerContainer">
             <div id="center" class="column">
+			
               <div id="loading">Loading...</div>
               <div id="feedback">
                 <img src="images/great_finish-01.png" />
