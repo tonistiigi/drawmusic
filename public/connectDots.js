@@ -59,6 +59,7 @@ $(document).ready(function() {
 function setupLayer(p, src) {
   console.log('setup')
   points = p
+  console.log(p)
   for (var i = 0 ;i < p.length; i++) {
 		var xx = p[i].x
 		var yy = p[i].y
@@ -93,6 +94,7 @@ function isNextPoint(x, y) {
 				layerComplete();
 				console.log("picture is complete");
         clearCanvas();
+        startNextLayer()
 			}
 			pointNumber++;
 			return true;
