@@ -16,6 +16,17 @@
      $(document).ready(function() {
           preloadResources();
 
+		 
+		   $('#play_btn').on("mouseover touchstart",function()
+       {
+          $(this).css("cursor","pointer");
+          $(this).animate({width: "300px", marginTop: "190px"}, 'slow');
+       });
+		
+		$('#play_btn').on("mouseout touchend",function()
+		  {   
+			  $(this).animate({width: "200px", marginTop: "230px"}, 'slow');
+		   });
          
          $('#startGame a')
            .on('touchstart mousedown', function() {
@@ -86,6 +97,7 @@
       
       background-color: rgba(0, 0, 0, 0.2);
       height: 76px;
+	  position:absolute;
       
      display: none;
     }
@@ -132,9 +144,9 @@
     }
     
     #startGame img {
-      position: absolute;
-      top: 200px;
-      left: 405px;
+      position: relatative;
+      top: 400px;
+	  margin:230px auto 0;
     }
     
     #drawAgain {
@@ -193,6 +205,7 @@
       left: 0px;
       pointer-events: none;
     }
+	
     
     
     
@@ -234,7 +247,7 @@
           
           
           <div class="center" id="startGame">
-            <a href="#"><img src="images/play_btn.png"/></a>
+            <a href="#"><img id="play_btn" src="images/play_btn.png"/></a>
           </div>
       
           <div class="points"></div>
