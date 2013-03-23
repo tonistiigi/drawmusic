@@ -14,9 +14,9 @@
      $(document).ready(function() {
           preloadResources();
 
-<<<<<<< HEAD
+
          $('#startGame a')
-           .click(function() {
+           .on('touchstart mousedown', function() {
            $(this).parent()
              .hide();
            $('#feedback')
@@ -27,34 +27,6 @@
            startGame();
            return false;
          });
-=======
-     $('#startGame')
-       .on('touchstart mousedown', function() {
-       $(this)
-         .hide();
-       $('.feedback')
-         .hide();
-       startGame();
-       return false;
-     });
-
-     $('#endGame')
-       .click(function() {
-       endGame();
-       return false;
-     });
-
-
-     game.on('end', function() {
-       $('#startGame')
-         .text("Well done! Play again?");
-       $("#startGame")
-         .fadeIn(animationDelay, function() {
-         $('.feedback')
-           .show();
-       });
-     });
->>>>>>> 845f03f55e81fe45bf1302551db3a7257024f7fc
 
          $('#endGame a')
            .click(function() {
@@ -88,8 +60,10 @@
   
   <style type="text/css">
     /* Common */
-    body {
+    html, body {
       -webkit-user-select: none;
+      padding: 0;
+      margin: 0;
     }
     
     
@@ -98,6 +72,9 @@
     
     #loading {
         font-size: 5em;
+        text-align: center;
+        padding: 30px;
+        font-family: Helvetica;
     }
     
     .center {
@@ -139,10 +116,9 @@
       margin-top: 100px;
       width: 1024px;
       height: 748px;
-      border: 1px solid #c00;
       margin: 0 auto;
       position: relative;
-      background: blue url('temp_bg.jpg');
+      background: url('temp_bg.jpg');
       
     }
     .point {
@@ -165,40 +141,35 @@
     
   </style>
     <div id="main">
-    
-<<<<<<< HEAD
+  
     
         <div id="canvas">
           <div id="outlines">
-            <div id="loading">Loading...</div>
-            <div id="playAgain">
-                <a href="#"><img src="play_again.png" /></a>
-                Would you like to buy our "Bird is the Word" version of this game?
-            </div>
             
-            <div class="right" id="cheat">
-                <a href="#">GOURANGA</a>
-            </div>
-            
-            <div class="center" id="startGame">
-            <a href="#"><img src="play.png"/></a><br />
-            
-            
-            </div>
             
           </div>
+          
+          <div id="loading">Loading...</div>
+          <div id="playAgain">
+              <a href="#"><img src="play_again.png" /></a>
+              Would you like to buy our "Bird is the Word" version of this game?
+          </div>
+          
+          <div class="right" id="cheat">
+              <a href="#">GOURANGA</a>
+          </div>
+          
+          <div class="center" id="startGame">
+          <a href="#"><img src="play.png"/></a><br />
+          
+          
+          </div>
+      
+          <div class="points"></div>
+      
+          <canvas id="canvasid" width="1024" height="748"></canvas>
         </div>
     
-=======
-    <div id="canvas">
-      <div id="outlines"></div>
-      
-      <div class="points"></div>
-      
-      <canvas id="canvasid" width="1024" height="748"></canvas>
-      
-    </div>
->>>>>>> 845f03f55e81fe45bf1302551db3a7257024f7fc
     </div>
   </body>
 </html>

@@ -19,7 +19,7 @@ function initCanvas() {
     };
   });
 
-  $('#canvas').on('touchend mouseup mouseout', function(e) {
+  $('#canvas').on('touchend mouseup', function(e) {
     lastTouch = null;
     // Store the current transformation matrix
     context.save();
