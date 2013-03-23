@@ -8,7 +8,16 @@
   
   <script type="text/javascript">
 		$(document).ready(function() {
+            
+            //game.on('loaded', function() {
+                
+            //});
+            
+            
             preloadResources();
+            
+            
+            
 			$("#startGame").click(function() {
 				startGame();
 				return false;
@@ -18,8 +27,16 @@
 				endGame();
 				return false;
 			});
+            
+            
 		});
+        
+        $(window).load(function() {
+            $('#loading').fadeOut(150);
+        });
   </script>
+      <div id="loading">Loading...</div>
+      
 	  <a href="#" id="startGame">Let's go!</a><br />
 	  <a href="#" id="endGame">We're done for today</a>
 

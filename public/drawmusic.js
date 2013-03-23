@@ -1,7 +1,43 @@
 // I know these global fuctions are wrong. I know!
 
 function preloadResources() {
-    preloadImages(level);
+    audio.on('loaded', function() {
+        console.debug('Audio loaded');
+        game.isFullyLoaded(true, null);
+    });
+    
+    game.on('imagesLoaded', function() {
+        console.debug('Images loaded');
+        game.isFullyLoaded(null, true);
+    });
+    
+    
+    // Just load one level resources for now
+    audio.prepareAudio(level);
+    preloadImages(level); 
+    
+    
+}
+
+var audio = $({}); // DUMMY
+
+audio.prepareAudio = function (level) {
+    // DUMMY
+    audio.trigger('loaded');
+}
+
+var game = $({});
+game.audioLoaded = false;
+game.imagesLoaded = false;
+game.isFullyLoaded = function(audio, images){
+    if (audio) game.audioLoaded = true;
+    if (images) game.imagesLoaded = true;
+    
+    if (game.audioLoaded && game.imagesLoaded) {
+        console.debug('Game fully loaded');
+        game.trigger('loaded');
+    }
+    
 }
 
 function setupLayers(points, endImage) {
@@ -50,8 +86,10 @@ function preloadImages(level) {
                 console.debug('Successfully preloaded image %s', img.src);
             }
         });
-        
+        var img = new Image();
+        img.src = layer.src;
     });
+    game.trigger('imagesLoaded');
 }
 
 var currentLayer = -1;
@@ -64,7 +102,7 @@ var level = {
       {x: 100, y: 200, src: 'twinkle_l1t1.png'},
 	  {x: 200, y: 200, src: 'twinkle_l1t2.png'}
       ],
-      src: 'img.png',
+      src: 'http://s22.postimg.org/6l8ogm9gv/large_Img.png',
       audio: 'audio.mp3'
     },
 	
