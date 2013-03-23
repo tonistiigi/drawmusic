@@ -45,6 +45,7 @@
          
             $('#cheat a').on('touchstart mousedown', function() {
                 game.trigger('end');
+                return false;
             });
      });
 
