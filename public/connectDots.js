@@ -18,9 +18,21 @@ $(document).ready(function() {
     isdown = false
   })
 
-	$("#canvas").mousemove(function(e) {
-    // console.log(e)
-    if (isdown && !lcomplete && isNextPoint(e.offsetX, e.offsetY)) {
+  $('#canvas').on('touchstart', function() {
+    isdown = true
+
+    console.log('m11')
+  })
+  $('#canvas').on('touchend touchcancel', function() {
+    isdown = true
+  })
+
+  var onmove = function(e) {
+    var offset = $('#canvas').offset()
+    // console.log('mm', offset, e.originalEvent.pageX - offset.left, e.originalEvent.pageY - offset.top)
+
+
+    if (isdown && !lcomplete && isNextPoint(e.originalEvent.pageX - offset.left, e.originalEvent.pageY - offset.top)) {
 
       var outline = $('<div class="outline"></div>')
 
@@ -32,10 +44,15 @@ $(document).ready(function() {
       outline.css({left: cur.l, top: cur.t, width: cur.r, height: cur.b})
 
 			console.log("line complete", pointNumber);
+      clearCanvas();
 			audio.setProgress(getLayerProgress());
 		}
 
-	});
+	};
+
+
+	$("#canvas").mousemove(onmove);
+	$("#canvas").on('touchmove', onmove);
 
 });
 
@@ -53,13 +70,14 @@ function setupLayer(p, src) {
 
 var pointNum = 0;
 function drawPoint(top, left) {
-	var t = $('<div>')
-	t.css("top", top);
-	t.css("left", left)
-	t.addClass("point")
-	t.html(pointNum);
-	pointNum++;
-	$("#canvas").append(t);
+  var t = $('<div>')
+  t.css("top", top);
+  t.css("left", left)
+  t.addClass("point")
+  t.html("<div style='width:15px;height:15px;border-radius:5px;font-size:12px;color:#fff;line-height:15px;text-align:center;background:#000'>" + pointNum + "</div>");
+  pointNum++;
+  $("#canvas")
+    .append(t);
 }
 
 function isNextPoint(x, y) {
@@ -74,6 +92,7 @@ function isNextPoint(x, y) {
 				lcomplete = true;
 				layerComplete();
 				console.log("picture is complete");
+        clearCanvas();
 			}
 			pointNumber++;
 			return true;

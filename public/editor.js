@@ -4,22 +4,32 @@ var layers
 var activelayer
 var activepoint
 
+var win
+
 function update() {
   var json = $('#raw').val().replace(/\n/g, ' ')
 
   json = eval('(' + json + ')')
 
-  $('#layers').empty()
+  if (!win) {
+    win = window.open()
+  }
+
+  $(win.document.body).append($('<div id="layers"></div>'))
+
+  $(win.document.body).append($('style').clone())
+  
+  $(win.document.body).find('#layers').empty()
 
   name = json.name
 
   layers = json.layers.map(function(l) {
 
     var layer = $('<div class="layer"></div>')
-    $('#layers').append(layer)
+    $(win.document.body).find('#layers').append(layer)
 
     layer.on('click', function() {
-      $('layer.active').removeClass('active')
+      $('.layer.active').removeClass('active')
       layer.addClass('active')
       activelayer = l
       activateLayer(l)

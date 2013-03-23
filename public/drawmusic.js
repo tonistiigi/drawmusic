@@ -1,5 +1,9 @@
 // I know these global fuctions are wrong. I know!
 
+document.ontouchstart = function(e){
+    e.preventDefault();
+}
+
 function preloadResources() {
     audio.on('loaded', function() {
         game.isFullyLoaded(true, null);
@@ -70,6 +74,7 @@ function startGame() {
     currentLayer = 0;
     setupLayer(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
     audio.loadTrack(0)
+    initCanvas();
 }
 
 function endGame() {
