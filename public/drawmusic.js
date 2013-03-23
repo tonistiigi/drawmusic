@@ -56,6 +56,24 @@ audio.on('loaded', function() {
 })
 
 
+// dummy loading
+var currentTrack = 0;
+var progress = 0;
+function playMore() {
+  audio.loadTrack(currentTrack)
+  progress += 10
+  audio.setProgress(progress)
+  if (progress >= 100) {
+    currentTrack++
+    progress = 0
+    if (currentTrack >= level.layers.length) {
+      clearInterval(interval)
+    }
+  }
+
+}
+var interval = setInterval(playMore, 500)
+
 /*
 var a = {}
 var b = $(a)

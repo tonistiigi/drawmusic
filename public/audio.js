@@ -39,7 +39,7 @@ audio.play = function() {
     b.source.buffer = b.buffer
     b.gain = audio.context.createGainNode()
     b.gain.connect(audio.gain)
-    b.gain.gain.value = .4
+    b.gain.gain.value = 0
     b.source.connect(b.gain)
     b.source.noteOn(0)
     b.time = audio.context.currentTime
@@ -67,7 +67,7 @@ function replay() {
     b.source.buffer = b.buffer
     b.gain = audio.context.createGainNode()
     b.gain.connect(audio.gain)
-    b.gain.gain.value = .4
+    b.gain.gain.value = b.vol
     b.source.connect(b.gain)
    // console.log('replay', b.time ,b.buffer.duration, audio.context.currentTime)
     b.source.noteOn(b.time + b.buffer.duration - audio.context.currentTime)
@@ -79,10 +79,12 @@ function replay() {
 }
 
 audio.setProgress = function(val) {
-  buffers[audio.active].gain.gain.value = val / 100
+  //console.log('progress', audio.active, val / 100)
+  buffers[audio.active].vol = buffers[audio.active].gain.gain.value = val / 100
 }
 
 audio.setComplete = function() {
+  buffers[audio.active].vol = 1
   buffers[audio.active].gain.gain.value = 1
 }
 
