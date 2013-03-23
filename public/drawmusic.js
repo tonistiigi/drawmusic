@@ -2,19 +2,17 @@
 
 function preloadResources() {
     audio.on('loaded', function() {
-        console.debug('Audio loaded');
         game.isFullyLoaded(true, null);
     });
     
     game.on('imagesLoaded', function() {
-        console.debug('Images loaded');
         game.isFullyLoaded(null, true);
     });
     
     
     // Just load one level resources for now
     audio.prepareAudio(level);
-    preloadImages(level); 
+    preloadImages(level);
     
     
 }
@@ -35,7 +33,7 @@ game.isFullyLoaded = function(audio, images){
     
     if (game.audioLoaded && game.imagesLoaded) {
         console.debug('Game fully loaded');
-        game.trigger('loaded');
+        game.trigger('loaded'); // Useless, as images aren't loaded when this is fired!
     }
     
 }
@@ -50,13 +48,17 @@ function setupLayers(points, endImage) {
 }
 
 function layerComplete() {
-    console.debug('Level %s complete.', currentLayer);
+    console.debug('Layer %s complete.', currentLayer);
     if (currentLayer < level.layers.length - 1) {
         currentLayer++;
-        setupLayers(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
+        game.trigger('layerComplete');
     } else {
         endGame(); // We only have one level currently
     }
+}
+
+function startNextLayer() {
+    setupLayers(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
 }
 
 function layerProgress() {
@@ -65,7 +67,6 @@ function layerProgress() {
 
 
 function startGame() {
-    alert('Careful, we are now starting!');
     console.debug('Total levels: %s', level.layers.length);
     currentLayer = 0;
     setupLayers(level.layers[currentLayer].tiles, null);
@@ -73,7 +74,7 @@ function startGame() {
 
 function endGame() {
     console.debug('Game ended');
-    alert('Well done. Would you like to buy our "Bird is the Word" version?');
+    game.trigger('end');
 }
 
 function preloadImages(level) {
@@ -83,7 +84,6 @@ function preloadImages(level) {
             if (tile.src != null) {
                 var img = new Image();
                 img.src = tile.src;
-                console.debug('Successfully preloaded image %s', img.src);
             }
         });
         var img = new Image();
