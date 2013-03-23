@@ -138,7 +138,8 @@
     #cheat {
         text-align: right;
     }
-    
+
+
     /* Canvas and drawing */
     #canvas {
       margin-top: 100px;
@@ -147,15 +148,28 @@
       margin: 0 auto;
       position: relative;
       background: url('images/start_bg-01.png');
-      
+      border: 1px solid #c00;
+      position:absolute;
+	    left:12%
+
       transition: background 0.25s linear;
     }
     .point {
       position: absolute;
-      border: 1px solid #0c0;
-      -webkit-user-select: none;
+	border: 1px solid #0c0;
+	-webkit-user-select: none;
+	cursor: default;
+	display: block;
+	width: 22px;
+	height: 20px;
+	border-radius: 30px;
+	font-size: 20px;
+	color: #fff;
+	line-height: 18px;
+	text-align: center;
+	background: #000;
     }
-    
+	.point:hover{color:#ccc;text-decoration:none;background:#333}
     .outline {
       position: absolute;
       background-repeat: no-repeat;
@@ -180,6 +194,7 @@
             
           </div>
           
+         
           <div id="headerContainer">
             <div id="center" class="column">
               <div id="loading">Loading...</div>
@@ -211,6 +226,8 @@
           </div>
       
           <div class="points"></div>
+          
+          <div class="ready"></div>
       
           <canvas id="canvasid" width="1024" height="748"></canvas>
         </div>
