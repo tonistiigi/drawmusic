@@ -8,6 +8,8 @@ var radius = 20;
 var nextPoint
 var isdown
 var points
+var currentPoint
+var correctSelection
 
 $(document).ready(function() {
 
@@ -17,8 +19,14 @@ $(document).ready(function() {
     console.log('m11')
   })
   $('#canvas').mouseup(function() {
-    isdown = false
+
+	isdown = false;
+	correctSelection=false
+
+
+
   })
+
 
   $('#canvas').on('touchstart', function() {
     isdown = true
@@ -30,9 +38,17 @@ $(document).ready(function() {
   var onmove = function(e) {
     var offset = $('#canvas').offset()
     // console.log('mm', offset, e.originalEvent.pageX - offset.left, e.originalEvent.pageY - offset.top)
+    var parentOffset = $(this).offset();
+  	var relX = e.pageX - parentOffset.left;
+    var relY = e.pageY - parentOffset.top;
+
+	  if (!correctSelection && isdown && currentPoint){
+
+      correctSelection = isCurrentPoint(relX, relY);
 
 
-    if (isdown && !lcomplete && isNextPoint(e.originalEvent.pageX - offset.left, e.originalEvent.pageY - offset.top)) {
+	  }
+    if (correctSelection && isdown && !lcomplete && isNextPoint(relX, relY)) {
 
       var outline = $('<div class="outline"></div>')
 
@@ -67,6 +83,7 @@ function setupLayer(p, src) {
   $("#canvas .points").empty();
 
   points = p
+  currentPoint = points[0]
   for (var i = 0 ;i < p.length; i++) {
 		var xx = p[i].x
 		var yy = p[i].y
@@ -79,14 +96,13 @@ function setupLayer(p, src) {
 
 var pointNum = 0;
 function drawPoint(top, left) {
-  var t = $('<div>')
-  t.css("top", top);
-  t.css("left", left)
-  t.addClass("point")
-  t.html("<div style='width:15px;height:15px;border-radius:5px;font-size:12px;color:#fff;line-height:15px;text-align:center;background:#000'>" + pointNum + "</div>");
-  pointNum++;
-  $("#canvas .points")
-    .append(t);
+	var t = $('<div>')
+	t.css("top", top-10);
+	t.css("left", left-10)
+	t.addClass("point")
+	t.text(pointNum+1);
+	pointNum++;
+	$("#canvas").append(t);
 }
 
 function isNextPoint(x, y) {
@@ -117,15 +133,25 @@ function isNextPoint(x, y) {
           lastTouch = null
         }, 600)
 			}
+			currentPoint=points[pointNumber];
 			pointNumber++;
 			return true;
 		} else {
 			startPointSet = true;
 			nextPoint = points[1];
-			pointNumber = 1;
+			pointNumber=1;
+			currentPoint=points[0];
 		}
 	}
 	return false;
+}
+
+function isCurrentPoint(x,y){
+	if (getDistance(currentPoint, {x : x, y : y}) < radius) {
+		return true
+
+	}
+return false
 }
 
 function getLayerProgress() {
