@@ -32,7 +32,7 @@ $(document).ready(function() {
       outline.css({left: cur.l, top: cur.t, width: cur.r, height: cur.b})
 
 			console.log("line complete", pointNumber);
-			console.log(getLayerProgress());
+			audio.setProgress(getLayerProgress());
 		}
 
 	});
@@ -67,8 +67,9 @@ function isNextPoint(x, y) {
 	if (getDistance(nextPoint, {x : x, y : y}) < radius) {
 
 		if (startPointSet) {
-			if (points.length - 1 > pointNumber) {
+			if (points.length  > pointNumber) {
 				nextPoint = points[pointNumber + 1];
+        if (!nextPoint) nextPoint = points[0]
 			} else {
 				lcomplete = true;
 				layerComplete();
