@@ -26,6 +26,7 @@
       width: 230px;
       padding: 20px;
       border: 3px solid #ccc;
+      float: left;
     }
     .layer.active {
       border: 3px solid #c00;
@@ -59,23 +60,47 @@
   
   
   <body>
-    <div id="board">
+    <div id="board" style="background: #ddd">
     </div>
     
     <textarea id="raw">
-      
       {
-        name: 'twinkle',
-        layers: [
-          { tiles: [
-            {x: 100, y: 120, src: 'tile001.png'},
-            {x: 100, y: 120, src: 'tile002.png'}
+        "name": "twinkle",
+        "layers": [
+          {
+            "tiles": [
+              {
+                "x": 100,
+                "y": 120,
+                "src": "tile001.png"
+              }
             ],
-            src: 'twinkle/star.png',
-            audio: 'audio.mp3'
+            "src": "twinkle/circle.png",
+            "audio": "audio.mp3"
+          },
+          {
+            "tiles": [
+              {
+                "x": 100,
+                "y": 120,
+                "src": "tile001.png"
+              }
+            ],
+            "src": "twinkle/moon.png",
+            "audio": "audio.mp3"
+          },
+          {
+            "tiles": [
+              {
+                "x": 100,
+                "y": 120,
+                "src": "tile001.png"
+              }
+            ],
+            "src": "twinkle/star_mf.png",
+            "audio": "audio.mp3"
           }
-        ],
-        duration: 12.3
+        ]
       }
       
     </textarea>
