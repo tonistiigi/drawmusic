@@ -14,13 +14,12 @@
      $(document).ready(function() {
           preloadResources();
 
-
+         
          $('#startGame a')
            .on('touchstart mousedown', function() {
-           $(this).parent()
-             .hide();
-           $('#feedback')
-             .hide();
+           $(this).parent().fadeOut(animationDelay);
+           $('#headerContainer')
+             .fadeIn(animationDelay);
            
            $('#cheat').show();
            
@@ -36,7 +35,7 @@
 
 
          game.on('end', function() {
-           $('#drawAgain').fadeIn(animationDelay, function() {});
+           $('#drawAgain').fadeIn(animationDelay);
            
            
            $('#cheat').hide();
@@ -53,6 +52,7 @@
          .fadeOut(animationDelay, function() {
          $('#startGame')
            .fadeIn(animationDelay);
+           
        });
      });
 
@@ -72,6 +72,8 @@
       
       background-color: rgba(0, 0, 0, 0.2);
       height: 76px;
+      
+     display: none;
     }
     #headerContainer .column {
       position: relative;
@@ -79,6 +81,7 @@
     }
     #center {
       width: 100%;
+      text-align: center;
     }
     #left {
       width: 224px;          /* LC width */
@@ -115,24 +118,22 @@
     }
     
     #startGame img {
-        width: 30%;
-        height: auto;
-        margin-top: 100px;
+      position: absolute;
+      top: 200px;
+      left: 405px;
     }
     
     #drawAgain {
     }
     
-    #cheat {
-        text-align: right;
-    }
-    
     #feedback {
-        text-align: center;
     }
     
     #nextLevel {
-      text-align: right;
+    }
+    
+    #cheat {
+        text-align: right;
     }
     
     /* Canvas and drawing */
@@ -142,7 +143,7 @@
       height: 748px;
       margin: 0 auto;
       position: relative;
-      background: url('images/background.png');
+      background: url('images/start_bg-01.png');
       
     }
     .point {
@@ -150,10 +151,12 @@
       border: 1px solid #0c0;
       -webkit-user-select: none;
     }
+    
     .outline {
       position: absolute;
       background-repeat: no-repeat;
     }
+    
     #canvasid {
       position: absolute;
       top: 0px;
@@ -204,7 +207,7 @@
           </div>
           
           <div class="center" id="startGame">
-            <a href="#"><img src="play.png"/></a>
+            <a href="#"><img src="images/play_btn.png"/></a>
           </div>
       
           <div class="points"></div>
