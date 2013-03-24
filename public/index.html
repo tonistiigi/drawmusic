@@ -20,6 +20,10 @@
        $('#canvas').css('background-image', 'url(\'images/start_bg-01.png\')');
        $('#loading').show();
       });
+	  
+	  $("#tutorial").css("opacity", 0);
+	  
+	  
       
       preloadResources();
 
@@ -36,14 +40,34 @@
          
          $('#startGame a')
            .on('touchend mousedown', function() {
-           
-           $('#canvas').css('background-image', 'url(\'images/background_game.png\')');
-           $(this).parent().fadeOut(animationDelay, function() {
-            $('#headerContainer')
-             .fadeIn(animationDelay);
-             startGame();
+		    $("#tutorial").css("display", "block");
+		    $('#canvas').css('background-image', 'url(\'images/background_game.png\')');
+						$(this).parent().fadeOut(animationDelay, function() {
+						setTimeout(function(){
+						
+						  $("#tutorial").animate({opacity:1},500)
+			 
+			 $("#tutorial").on('click touchstart ', function(){
+					
+					$('#headerContainer')
+					 .fadeIn(animationDelay);
+					   $("#tutorial").animate({opacity:0},500,"swing",function(){
+					    $("#tutorial").remove()
+						})
+					 startGame();
+			 })
+			 
+			
            });
+						
+						
+						})
+           
+		   
+         
 
+		   
+		   
 
            return false;
          });
@@ -245,6 +269,16 @@
 
     #nextLevel {
     }
+	#tutorial{
+	margin-top: 230px; 
+	top:60px;
+	left:300px;
+	position: absolute;
+	border:10px solid #fff;
+	border-radius:10px;
+	box-shadow:0 0 10px #fff;
+	display:none;
+	}
 
 
     
@@ -259,7 +293,7 @@
 
 
           </div>
-
+			
 
           <div id="headerContainer">
             <div id="center" class="column">
@@ -285,13 +319,17 @@
             </div>
           </div>
 
-
+ <div id="tutorial" ><img src="images/tutorial_anim.gif"></div>
           <div class="center" id="startGame">
             <div id="loading"><img src="images/loading.gif" /></div>
             <a href="#"><img id="play_btn" src="images/play_btn.png"/></a>
             
-          </div>
 
+          </div>
+		  			 
+
+		
+		  
           <div class="points"></div>
 
           <div class="ready"></div>
