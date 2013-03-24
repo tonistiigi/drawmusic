@@ -103,6 +103,7 @@ function drawPoint(top, left) {
 	t.text(pointNum+1);
 	pointNum++;
 	$("#canvas .points").append(t);
+	game.trigger("pointsLoaded");
 }
 
 function isNextPoint(x, y) {
@@ -125,7 +126,11 @@ function isNextPoint(x, y) {
 
         var img = $('<img>')
         img.attr('src', level.layers[currentLayer].src)
-        img.css({position: 'absolute', left: level.layers[currentLayer].x, top: level.layers[currentLayer].y})
+        img.css({position: 'absolute', opacity:0, left: level.layers[currentLayer].x, top: level.layers[currentLayer].y})
+		setTimeout(function(){
+				img.animate({opacity:1},3000);
+			})
+		
         $('#canvas .ready').append(img)
 
         setTimeout(function() {
