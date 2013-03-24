@@ -23,13 +23,13 @@
           $(this).animate({width: "300px", marginTop: "190px"}, 'slow');
        });
 		
-		$('#play_btn').on("mouseout touchend",function()
+		$('#play_btn').on("mouseout touchmove",function()
 		  {   
 			  $(this).animate({width: "200px", marginTop: "230px"}, 'slow');
 		   });
          
          $('#startGame a')
-           .on('touchstart mousedown', function() {
+           .on('touchend mousedown', function() {
            
            $('#canvas').css('background-image', 'url(\'images/background_game.png\')');
            $(this).parent().fadeOut(animationDelay);
