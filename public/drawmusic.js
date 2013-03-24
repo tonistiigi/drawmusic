@@ -78,6 +78,8 @@ function layerProgress() {
 
 
 function startGame() {
+  $('#canvas #canvasbg').addClass('is-visible')
+  $('#canvas #canvasbg').addClass('is-blur')
 
   level.layers = level.layers.map(function(l) {
     l.tiles = l.tiles.map(function(t) {
@@ -112,18 +114,20 @@ function startGame() {
 function resetGame() {
   currentLayer = -1;
   audio.stopAll();
-  
+
   // Tõnis had some fun at startGame, this makes his fun go around another time
   level = JSON.parse(JSON.stringify(firstLevel));
-  
+
   // Almost a hack
   audio.prepareAudio(level);
-  
+
   game.trigger('reset');
   startGame();
 }
 
 function endGame() {
+
+    $('#canvas #canvasbg').removeClass('is-blur')
     console.debug('Game ended');
     game.trigger('end');
     GameAnimations.play(20000);
