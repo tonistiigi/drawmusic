@@ -96,6 +96,9 @@
           $('#outlines').empty();
           $('.points').empty();
           $('.ready').empty();
+          $('#promo').fadeOut(animationDelay, function(){
+            $('#nextLevel').fadeIn(animationDelay);
+          });
          });
          
          $('#drawAgain a').on('touchstart mousedown', function() {
@@ -113,7 +116,41 @@
          });
        });
        
+       
+       $('#drawAgain img').on("mouseover touchstart",function(){
+        $(this).animate({width: '221px', marginLeft: "-5px", marginTop: "-2px"}, 'fast');
+       });
+       
+       $('#drawAgain img').on("mouseout touchmove",function(){
+        $(this).animate({width: "211px", marginLeft: "0", marginTop: "0"}, 'fast');
+       });
+       
+       $('#nextLevel img').on("mouseover touchstart",function(){
+        $(this).animate({width: '221px', marginLeft: "-5px", marginTop: "-2px"}, 'fast');
+       });
+       
+       $('#nextLevel img').on("mouseout touchmove",function(){
+        $(this).animate({width: "211px", marginLeft: "0", marginTop: "0"}, 'fast');
+       });
+       
+       
+       
+       $('#nextLevel a')
+           .on('touchstart mousedown', function() {
+           nextLevel();
+           return false;
+         });
+         
+       game.on('nextLevel', function() {
+          $('#outlines').empty();
+          $('.points').empty();
+          $('.ready').empty();
+          $('#nextLevel').hide();
+          $('#feedback').hide();
+          $('#promo').fadeIn(animationDelay);
+       });
      });
+     
      
      
 
@@ -151,8 +188,8 @@
 
     #headerContainer {
       position: relative;
-      padding-left: 224px;   /* LC width */
-      padding-right: 224px;  /* RC width */
+      padding-left: 221px;   /* LC width */
+      padding-right: 221px;  /* RC width */
 
       background-color: rgba(0, 0, 0, 0.2);
       height: 76px;
@@ -168,13 +205,13 @@
 	  
     }
     #left {
-      width: 224px;          /* LC width */
-      right: 224px;          /* LC width */
+      width: 221px;          /* LC width */
+      right: 221px;          /* LC width */
       margin-left: -100%;
     }
     #right {
-      width: 224px;          /* RC width */
-      margin-right: -224px;  /* RC width */
+      width: 221px;          /* RC width */
+      margin-right: -221px;  /* RC width */
     }
 
     #main {
@@ -260,14 +297,16 @@
       margin:230px auto 0;
     }
 
-    #drawAgain {
+    #drawAgain img{
+      width: 211px;
     }
 
     #feedback {
       display: none;
     }
 
-    #nextLevel {
+    #nextLevel img{
+      width: 211px;
     }
 	#tutorial{
 	margin-top: 230px; 
@@ -280,7 +319,15 @@
 	display:none;
 	}
 
-
+    #promo {
+      display: none;
+      position: relative;
+    }
+    
+    #promo img{
+      display: relative;
+      width: 450px;
+    }
     
 
   </style>
@@ -312,7 +359,7 @@
             </div>
             <div id="right" class="column">
               <div id="nextLevel">
-                <img src="images/next_btn-01.png" />
+                <a href="#"><img src="images/next_btn-01.png" /></a>
               </div>
 
               &nbsp;
@@ -323,7 +370,15 @@
           <div class="center" id="startGame">
             <div id="loading"><img src="images/loading.gif" /></div>
             <a href="#"><img id="play_btn" src="images/play_btn.png"/></a>
-            
+
+          </div>
+          
+          <div class="center" id="promo">
+          <br />
+          <br />
+          <br />
+            <img src="images/preview-04.jpg" /><br /><br />
+            <img src="images/buy_btn-02.png" />
 
           </div>
 		  			 

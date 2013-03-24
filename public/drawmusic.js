@@ -46,7 +46,9 @@ game.otherImages = [
   'images/next_btn-01.png',
   'images/play_btn.png',
   'images/start_bg-01.png',
-  'images/background_game_blur.png'
+  'images/background_game_blur.png',
+  'images/buy_btn-02.png',
+  'images/preview-04.jpg'
   ];
 
 game.audioLoaded = false;
@@ -150,6 +152,10 @@ function resetGame() {
   startGame();
 }
 
+function nextLevel() {
+  game.trigger('nextLevel');
+}
+
 function endGame() {
 
     $('#canvas #canvasbg').removeClass('is-blur')
@@ -169,13 +175,11 @@ function preloadImages(level) {
       
       if (img.width && img.height) {
         loaded++;
-        console.debug('Otherimages already loaded: %s', loaded);
       }else{
         img.onload = function() {
           loaded++;
           if(loaded >= preloadTotalImages) {
             game.trigger('imagesLoaded');
-            console.debug('Trigger activated: images loaded!');
           }
         }
       }
@@ -189,7 +193,6 @@ function preloadImages(level) {
           
           img.onload = function() {
             loaded++
-            console.debug(loaded);
             if(loaded >= preloadTotalImages) {
               game.trigger('imagesLoaded');
             }
@@ -199,7 +202,6 @@ function preloadImages(level) {
         img.src = layer.src;
         img.onload = function() {
           loaded++
-          console.debug(loaded);
           if(loaded >= preloadTotalImages) {
             game.trigger('imagesLoaded');
           }
