@@ -20,10 +20,10 @@ audio.prepareAudio = function (level) {
     audio.nextTrack = 0
     audio.play()
   })
-
+audio.prepareSound('twinkle/magic_bell.mp3')
 }
-audio.playSound=function(sample){
-
+audio.playSoundEffect=function(){
+audio.playSound('twinkle/magic_bell.mp3')
 }
 
 audio.startLayer = function(index) {

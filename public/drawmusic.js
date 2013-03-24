@@ -77,8 +77,7 @@ function layerComplete() {
 
     console.debug('Layer %s complete.', currentLayer);
     audio.setComplete()
-	audio.playSound(//Some sound
-	)
+	audio.playSoundEffect();
     if (currentLayer < level.layers.length - 1) {
         currentLayer++;
         game.trigger('layerComplete');
