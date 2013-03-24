@@ -102,6 +102,36 @@ audio.stopAll = function() {
   audio.playing = false;
 }
 
+var prepared = {}
+audio.prepareSound = function(path) {
+  var req = new XMLHttpRequest();
+  req.open('GET', path, true);
+  req.responseType = 'arraybuffer';
+  req.onload = function() {
+      audio.context.decodeAudioData(req.response, function(buffer) {
+         if (!buffer) {
+             return console.error('Error decoding file:', path);
+         }
+         prepared[path] = buffer
+      }, function(e){console.error('Error decoding file',e);});
+  };
+  req.onerror = function() {
+    console.error('XHR error loading file:', path);
+  };
+  req.send();
+}
+audio.playSound = function(path) {
+  var buffer = prepared[path]
+  var source = audio.context.createBufferSource()
+  source.buffer = buffer
+  var gain = audio.context.createGainNode()
+  gain.connect(audio.gain)
+  gain.gain.value = 1
+  source.connect(gain)
+ // console.log('replay', b.time ,b.buffer.duration, audio.context.currentTime)
+  source.noteOn(0)
+}
+
 function loadBuffer(layer, i) {
   buffers[i] = null
   var req = new XMLHttpRequest();
