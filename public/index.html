@@ -74,6 +74,7 @@
          });
          
          $('#drawAgain a').on('touchstart mousedown', function() {
+          $('#feedback').fadeOut(animationDelay);
           resetGame();
          });
          
