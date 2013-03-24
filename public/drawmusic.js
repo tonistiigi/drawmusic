@@ -107,7 +107,17 @@ function startGame() {
 }
 
 function resetGame() {
-
+  currentLayer = -1;
+  audio.stopAll();
+  
+  // Tõnis had some fun at startGame, this makes his fun go around another time
+  level = JSON.parse(JSON.stringify(firstLevel));
+  
+  // Almost a hack
+  audio.prepareAudio(level);
+  
+  game.trigger('reset');
+  startGame();
 }
 
 function endGame() {

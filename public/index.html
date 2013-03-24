@@ -43,7 +43,7 @@
          });
 
          $('#endGame a')
-           .click(function() {
+           .on('touchstart mousedown', function() {
            endGame();
            return false;
          });
@@ -52,12 +52,23 @@
          game.on('end', function() {
            $('#feedback').fadeIn(animationDelay);
 
-
            $('#cheat').hide();
          });
+         
+         game.on('reset', function() {
+          $('#outlines').empty();
+          $('.points').empty();
+          $('.ready').empty();
+         });
+         
+         $('#drawAgain a').on('touchstart mousedown', function() {
+          resetGame();
+         });
+         
+            $('#cheat a').on('touchstart mousedown', function() {
 
-            $('#cheat a').click(function() {
                 game.trigger('end');
+                return false;
             });
      });
 

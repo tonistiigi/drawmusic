@@ -48,7 +48,7 @@ audio.play = function() {
 
   audio.playing = true
 
-  setTimeout(function() {
+  audio.timeout = setTimeout(function() {
     replay()
   }, buffers[0].buffer.duration * 1000  - 150)
 
@@ -74,7 +74,7 @@ function replay() {
     b.source.noteOn(b.time + b.buffer.duration - audio.context.currentTime)
     b.time = audio.context.currentTime
   })
-  setTimeout(function() {
+  audio.timeout = setTimeout(function() {
     replay()
   }, buffers[0].buffer.duration * 1000  - 150)
 }
@@ -90,9 +90,11 @@ audio.setComplete = function() {
 }
 
 audio.stopAll = function() {
-  buffers.forEach(function() {
-    buffers.source.noteOff()
+  buffers.forEach(function(b) {
+    b.source.noteOff(0)
   })
+  clearTimeout(audio.timeout);
+  audio.playing = false;
 }
 
 function loadBuffer(layer, i) {
