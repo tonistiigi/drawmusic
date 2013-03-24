@@ -3,6 +3,10 @@ var audio = $({})
 var AudioContext = window.AudioContext || window.webkitAudioContext
 var buffers = []
 
+if (!AudioContext) {
+  alert('Sorry, we couldn\'t make it in 48 hours! Please switch to Google Chrome, Safari or iPad (iOS 6) to enjoy our splendid app!')
+}
+
 audio.prepareAudio = function (level) {
   audio.playing = false
   audio.context = new AudioContext
