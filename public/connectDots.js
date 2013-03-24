@@ -10,6 +10,9 @@ var isdown
 var points
 var currentPoint
 var correctSelection
+var firstPoint=true
+
+
 
 $(document).ready(function() {
 
@@ -50,6 +53,7 @@ $(document).ready(function() {
 	  }
     if (correctSelection && isdown && !lcomplete && isNextPoint(relX, relY)) {
 
+		$(".firstClass").text(points.length+1);
       var outline = $('<div class="outline"></div>')
 
       var outlines = $('#canvas').find('#outlines')
@@ -99,7 +103,13 @@ function drawPoint(top, left) {
 	var t = $('<div>')
 	t.css("top", top-10);
 	t.css("left", left-10)
-	t.addClass("point")
+
+	if(firstPoint){
+		t.addClass("point firstClass")
+	firstPoint=false
+	}else{
+		t.addClass("point")
+	}
 	t.text(pointNum+1);
 	pointNum++;
 	$("#canvas .points").append(t);

@@ -66,6 +66,7 @@ function layerComplete() {
 
 function startNextLayer() {
   audio.loadTrack(currentLayer)
+  firstPoint=true
   setupLayer(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
 }
 
