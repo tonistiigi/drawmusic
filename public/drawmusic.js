@@ -169,13 +169,11 @@ function preloadImages(level) {
       
       if (img.width && img.height) {
         loaded++;
-        console.debug('Otherimages already loaded: %s', loaded);
       }else{
         img.onload = function() {
           loaded++;
           if(loaded >= preloadTotalImages) {
             game.trigger('imagesLoaded');
-            console.debug('Trigger activated: images loaded!');
           }
         }
       }
@@ -189,7 +187,6 @@ function preloadImages(level) {
           
           img.onload = function() {
             loaded++
-            console.debug(loaded);
             if(loaded >= preloadTotalImages) {
               game.trigger('imagesLoaded');
             }
@@ -199,7 +196,6 @@ function preloadImages(level) {
         img.src = layer.src;
         img.onload = function() {
           loaded++
-          console.debug(loaded);
           if(loaded >= preloadTotalImages) {
             game.trigger('imagesLoaded');
           }

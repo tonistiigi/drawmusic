@@ -89,7 +89,24 @@
          });
        });
        
+       
+       $('#drawAgain img').on("mouseover touchstart",function(){
+        $(this).animate({width: '221px', marginLeft: "-5px", marginTop: "-2px"}, 'fast');
+       });
+       
+       $('#drawAgain img').on("mouseout touchmove",function(){
+        $(this).animate({width: "211px", marginLeft: "0", marginTop: "0"}, 'fast');
+       });
+       
+       $('#nextLevel img').on("mouseover touchstart",function(){
+        $(this).animate({width: '221px', marginLeft: "-5px", marginTop: "-2px"}, 'fast');
+       });
+       
+       $('#nextLevel img').on("mouseout touchmove",function(){
+        $(this).animate({width: "211px", marginLeft: "0", marginTop: "0"}, 'fast');
+       });
      });
+     
      
      
 
@@ -127,8 +144,8 @@
 
     #headerContainer {
       position: relative;
-      padding-left: 224px;   /* LC width */
-      padding-right: 224px;  /* RC width */
+      padding-left: 221px;   /* LC width */
+      padding-right: 221px;  /* RC width */
 
       background-color: rgba(0, 0, 0, 0.2);
       height: 76px;
@@ -144,13 +161,13 @@
 	  
     }
     #left {
-      width: 224px;          /* LC width */
-      right: 224px;          /* LC width */
+      width: 221px;          /* LC width */
+      right: 221px;          /* LC width */
       margin-left: -100%;
     }
     #right {
-      width: 224px;          /* RC width */
-      margin-right: -224px;  /* RC width */
+      width: 221px;          /* RC width */
+      margin-right: -221px;  /* RC width */
     }
 
     #main {
@@ -236,14 +253,16 @@
       margin:230px auto 0;
     }
 
-    #drawAgain {
+    #drawAgain img{
+      width: 211px;
     }
 
     #feedback {
       display: none;
     }
 
-    #nextLevel {
+    #nextLevel img{
+      width: 211px;
     }
 
 
@@ -278,7 +297,7 @@
             </div>
             <div id="right" class="column">
               <div id="nextLevel">
-                <img src="images/next_btn-01.png" />
+                <a href="#"><img src="images/next_btn-01.png" /></a>
               </div>
 
               &nbsp;
