@@ -22,6 +22,9 @@ audio.prepareAudio = function (level) {
   })
 
 }
+audio.playSound=function(sample){
+
+}
 
 audio.startLayer = function(index) {
   audio.vol = 0
