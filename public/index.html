@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>DrawMusic v.002</title>
+    <title>DrawMusicApp</title>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="connectDots.js"></script>
     <script type="text/javascript" src="audio.js"></script>
@@ -15,7 +15,13 @@
   <script type="text/javascript">
     var animationDelay = 250;
      $(document).ready(function() {
-          preloadResources();
+      // Make sure "Loading" and background appear at the same time
+      $('<img/>').attr('src', 'images/start_bg-01.png').load(function() {
+       $('#canvas').css('background-image', 'url(\'images/start_bg-01.png\')');
+       $('#loading').show();
+      });
+      
+      preloadResources();
 
 		   $('#play_btn').on("mouseover touchstart",function()
        {
@@ -31,14 +37,14 @@
          $('#startGame a')
            .on('touchend mousedown', function() {
            
-           //$('#canvas').css('background-image', 'url(\'images/background_game.png\')');
-            $(this).parent().fadeOut(animationDelay);
-           $('#headerContainer')
+           $('#canvas').css('background-image', 'url(\'images/background_game.png\')');
+           $(this).parent().fadeOut(animationDelay, function() {
+            $('#headerContainer')
              .fadeIn(animationDelay);
+             startGame();
+           });
 
-           $('#cheat').show();
 
-           startGame();
            return false;
          });
 
@@ -52,7 +58,6 @@
          game.on('end', function() {
            $('#feedback').fadeIn(animationDelay);
 
-           $('#cheat').hide();
          });
 		 
 		 game.on("pointsLoaded",function(){
@@ -70,25 +75,23 @@
          });
          
          $('#drawAgain a').on('touchstart mousedown', function() {
+          $('#feedback').fadeOut(animationDelay);
           resetGame();
          });
          
-            $('#cheat a').on('touchstart mousedown', function() {
 
-                game.trigger('end');
-                return false;
-            });
-     });
-
-     $(window)
-       .load(function() {
-       $('#loading')
-         .fadeOut(animationDelay, function() {
-         $('#startGame')
-           .fadeIn(animationDelay);
-
+            
+        game.on('loaded', function() {
+        $('#loading')
+           .fadeOut(animationDelay, function() {
+           $('#startGame a')
+             .fadeIn(animationDelay);
+         });
        });
+       
      });
+     
+     
 
   </script>
 
@@ -101,6 +104,11 @@
       font-family: Helvetica;
     }
     
+    
+    body {
+      background-color: #000049;
+    }
+
     #canvasbg {
       width: 1024px;
       height: 748px;
@@ -121,6 +129,7 @@
     }
 
     #headerContainer {
+      position: relative;
       padding-left: 224px;   /* LC width */
       padding-right: 224px;  /* RC width */
 
@@ -155,6 +164,7 @@
         text-align: center;
         padding: 30px;
         font-family: Helvetica;
+        display: none;
     }
 
     .center {
@@ -164,34 +174,7 @@
     .right {
         text-align: right;
     }
-
-    /* Game buttons */
-
-    #startGame {
-
-    }
-
-    #startGame img {
-      position: relatative;
-      top: 400px;
-	  margin:230px auto 0;
-    }
-
-    #drawAgain {
-    }
-
-    #feedback {
-      display: none;
-    }
-
-    #nextLevel {
-    }
-
-    #cheat {
-        text-align: right;
-    }
-
-
+    
     /* Canvas and drawing */
     #canvas {
       margin-top: 100px;
@@ -199,28 +182,27 @@
       height: 748px;
       margin: 0 auto;
       position: relative;
-      background: url('images/start_bg-01.png');
       position:relative;
 
       transition: background 0.25s linear;
     }
     .point {
       position: absolute;
-	border: 1px solid #eee;
-	-webkit-user-select: none;
-	cursor: default;
-	display: block;
-	width: 22px;
-	height: 20px;
-	border-radius: 30px;
-	font-size: 16px;
-	color: #000;
-  font-weight: bold;
-	line-height: 18px;
-	text-align: center;
-	background: #fff;
-  padding-top: 3px;
-  box-shadow: 0 0 15px #fff;
+      border: 1px solid #eee;
+      -webkit-user-select: none;
+      cursor: default;
+      display: block;
+      width: 22px;
+      height: 20px;
+      border-radius: 30px;
+      font-size: 16px;
+      color: #000;
+      font-weight: bold;
+      line-height: 18px;
+      text-align: center;
+      background: #fff;
+      padding-top: 3px;
+      box-shadow: 0 0 15px #fff;
     }
 	.point:hover{color:#ddd;text-decoration:none;background:#7fff8e;
 
@@ -237,6 +219,39 @@
       pointer-events: none;
     }
 
+    /* Game buttons */
+
+    #startGame {
+      
+    }
+    
+    #loading {
+      position: relative;
+    }
+    
+    #startGame a {
+      display: none;
+    }
+
+    #startGame img {
+      position: relatative;
+      top: 400px;
+      margin:230px auto 0;
+    }
+
+    #drawAgain {
+    }
+
+    #feedback {
+      display: none;
+    }
+
+    #nextLevel {
+    }
+
+
+    
+
   </style>
     <div id="main">
 
@@ -252,7 +267,7 @@
           <div id="headerContainer">
             <div id="center" class="column">
 			
-              <div id="loading">Loading...</div>
+              
               <div id="feedback">
                 <img src="images/great_finish-01.png" />
               </div>
@@ -268,16 +283,16 @@
               <div id="nextLevel">
                 <img src="images/next_btn-01.png" />
               </div>
-              <div id="cheat">
-                <a href="#">GOURANGA</a>
-              </div>
+
               &nbsp;
             </div>
           </div>
 
 
           <div class="center" id="startGame">
+            <div id="loading"><img src="images/loading.gif" /></div>
             <a href="#"><img id="play_btn" src="images/play_btn.png"/></a>
+            
           </div>
 
           <div class="points"></div>
