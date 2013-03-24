@@ -15,7 +15,13 @@
   <script type="text/javascript">
     var animationDelay = 250;
      $(document).ready(function() {
-          preloadResources();
+      // Make sure "Loading" and background appear at the same time
+      $('<img/>').attr('src', 'images/start_bg-01.png').load(function() {
+       $('#canvas').css('background-image', 'url(\'images/start_bg-01.png\')');
+       $('#loading').show();
+      });
+      
+      preloadResources();
 
 		   $('#play_btn').on("mouseover touchstart",function()
        {
@@ -32,13 +38,13 @@
            .on('touchend mousedown', function() {
            
            $('#canvas').css('background-image', 'url(\'images/background_game.png\')');
-           $(this).parent().fadeOut(animationDelay);
-           $('#headerContainer')
+           $(this).parent().fadeOut(animationDelay, function() {
+            $('#headerContainer')
              .fadeIn(animationDelay);
+             startGame();
+           });
 
-           $('#cheat').show();
-
-           startGame();
+           
            return false;
          });
 
@@ -78,17 +84,18 @@
                 game.trigger('end');
                 return false;
             });
-     });
-
-     $(window)
-       .load(function() {
-       $('#loading')
-         .fadeOut(animationDelay, function() {
-         $('#startGame')
-           .fadeIn(animationDelay);
-
+            
+        game.on('loaded', function() {
+        $('#loading')
+           .fadeOut(animationDelay, function() {
+           $('#startGame a')
+             .fadeIn(animationDelay);
+         });
        });
+       
      });
+     
+     
 
   </script>
 
@@ -99,6 +106,10 @@
       padding: 0;
       margin: 0;
       font-family: Helvetica;
+    }
+    
+    body {
+      background-color: #000049;
     }
 
     #headerContainer {
@@ -136,6 +147,7 @@
         text-align: center;
         padding: 30px;
         font-family: Helvetica;
+        display: none;
     }
 
     .center {
@@ -145,34 +157,7 @@
     .right {
         text-align: right;
     }
-
-    /* Game buttons */
-
-    #startGame {
-
-    }
-
-    #startGame img {
-      position: relatative;
-      top: 400px;
-	  margin:230px auto 0;
-    }
-
-    #drawAgain {
-    }
-
-    #feedback {
-      display: none;
-    }
-
-    #nextLevel {
-    }
-
-    #cheat {
-        text-align: right;
-    }
-
-
+    
     /* Canvas and drawing */
     #canvas {
       margin-top: 100px;
@@ -180,7 +165,6 @@
       height: 748px;
       margin: 0 auto;
       position: relative;
-      background: url('images/start_bg-01.png');
       position:relative;
 
       transition: background 0.25s linear;
@@ -218,6 +202,44 @@
       pointer-events: none;
     }
 
+    /* Game buttons */
+
+    #startGame {
+      
+    }
+    
+    #loading {
+      position: relative;
+      top: 200px;
+    }
+    
+    #startGame a {
+      display: none;
+    }
+
+    #startGame img {
+      position: relatative;
+      top: 400px;
+      margin:230px auto 0;
+    }
+
+    #drawAgain {
+    }
+
+    #feedback {
+      display: none;
+    }
+
+    #nextLevel {
+    }
+
+    #cheat {
+        text-align: right;
+    }
+
+
+    
+
   </style>
     <div id="main">
 
@@ -232,7 +254,7 @@
           <div id="headerContainer">
             <div id="center" class="column">
 			
-              <div id="loading">Loading...</div>
+              
               <div id="feedback">
                 <img src="images/great_finish-01.png" />
               </div>
@@ -257,7 +279,9 @@
 
 
           <div class="center" id="startGame">
+            <div id="loading">Loading...</div>
             <a href="#"><img id="play_btn" src="images/play_btn.png"/></a>
+            
           </div>
 
           <div class="points"></div>

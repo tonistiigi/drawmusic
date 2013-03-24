@@ -56,7 +56,7 @@ game.isFullyLoaded = function(audio, images){
 
     if (game.audioLoaded && game.imagesLoaded) {
         console.debug('Game fully loaded');
-        game.trigger('loaded'); // Useless, as images aren't loaded when this is fired!
+        game.trigger('loaded');
     }
 
 }
