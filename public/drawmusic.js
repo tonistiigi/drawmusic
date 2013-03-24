@@ -48,7 +48,7 @@ game.otherImages = [
   'images/start_bg-01.png',
   'images/background_game_blur.png',
   'images/buy_btn-02.png',
-  'images/preview-02.png'
+  'images/preview-04.jpg'
   ];
 
 game.audioLoaded = false;

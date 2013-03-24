@@ -72,7 +72,9 @@
           $('#outlines').empty();
           $('.points').empty();
           $('.ready').empty();
-          $('#nextLevel').fadeIn(animationDelay);
+          $('#promo').fadeOut(animationDelay, function(){
+            $('#nextLevel').fadeIn(animationDelay);
+          });
          });
          
          $('#drawAgain a').on('touchstart mousedown', function() {
@@ -120,6 +122,7 @@
           $('.points').empty();
           $('.ready').empty();
           $('#nextLevel').hide();
+          $('#feedback').hide();
           $('#promo').fadeIn(animationDelay);
        });
      });
@@ -289,6 +292,7 @@
     
     #promo img{
       display: relative;
+      width: 450px;
     }
     
 
@@ -336,7 +340,9 @@
           
           <div class="center" id="promo">
           <br />
-            <img src="images/preview-02.png" /><br /><br />
+          <br />
+          <br />
+            <img src="images/preview-04.jpg" /><br /><br />
             <img src="images/buy_btn-02.png" />
           </div>
 
