@@ -4,7 +4,7 @@ var startPointSet = false;
 var startpoint;
 var pointNumber = 0;
 var lcomplete = false;
-var radius = 20;
+var radius = 40;
 var nextPoint
 var isdown
 var points
@@ -128,7 +128,7 @@ function isNextPoint(x, y) {
         img.attr('src', level.layers[currentLayer].src)
         img.css({position: 'absolute', opacity:0, left: level.layers[currentLayer].x, top: level.layers[currentLayer].y})
 		setTimeout(function(){
-				img.animate({opacity:1},3000);
+				img.animate({opacity:1},2500);
 			})
 		
         $('#canvas .ready').append(img)
