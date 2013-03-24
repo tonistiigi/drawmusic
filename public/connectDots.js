@@ -138,10 +138,13 @@ function isNextPoint(x, y) {
         img.attr('src', level.layers[currentLayer].src)
         img.css({position: 'absolute', opacity:0, left: level.layers[currentLayer].x, top: level.layers[currentLayer].y})
 		setTimeout(function(){
-				img.animate({opacity:1},2500);
-			})
-		
+
+      console.log('animate', currentLayer, new Date().getTime())
+				img.animate({opacity:1},currentLayer === level.layers.length -1 ? 500 : 1500);
+			}, 0)
+
         $('#canvas .ready').append(img)
+        console.log('append image', currentLayer, new Date().getTime())
 
         setTimeout(function() {
           layerComplete()
