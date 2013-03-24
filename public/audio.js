@@ -13,6 +13,8 @@ audio.prepareAudio = function (level) {
     return loadBuffer(layer, i)
   })
 
+  loadBuffer({audio: 'twinkle/twink1_drums.mp3'}, level.layers.length)
+
   audio.on('loaded', function() {
     if (audio.nextTrack) audio.loadTrack(audio.nextTrack)
     audio.nextTrack = 0
@@ -45,6 +47,9 @@ audio.play = function() {
     b.source.noteOn(0)
     b.time = audio.context.currentTime
   })
+
+  var last = buffers[buffers.length - 1]
+  last.vol = last.gain.gain.value = 1
 
   audio.playing = true
 

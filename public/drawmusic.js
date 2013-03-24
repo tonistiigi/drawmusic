@@ -229,7 +229,7 @@ var firstLevel = {
       x: 390,
       y: 405,
       "src": "twinkle/earth.png",
-      "audio": "twinkle/twink1_drums.mp3"
+      "audio": "twinkle/twink1_bass.mp3"
     },
     {
       "tiles": [
@@ -309,7 +309,7 @@ var firstLevel = {
       x: 718,
       y: 130,
       "src": "twinkle/zzz_moon.png",
-      "audio": "twinkle/twink1_bass.mp3"
+      "audio": "twinkle/twink1_strings.mp3"
     },
     {
       "tiles": [
