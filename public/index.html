@@ -31,8 +31,8 @@
          $('#startGame a')
            .on('touchend mousedown', function() {
            
-           $('#canvas').css('background-image', 'url(\'images/background_game.png\')');
-           $(this).parent().fadeOut(animationDelay);
+           //$('#canvas').css('background-image', 'url(\'images/background_game.png\')');
+            $(this).parent().fadeOut(animationDelay);
            $('#headerContainer')
              .fadeIn(animationDelay);
 
@@ -67,7 +67,6 @@
           $('#outlines').empty();
           $('.points').empty();
           $('.ready').empty();
-		  firstPoint=true
          });
          
          $('#drawAgain a').on('touchstart mousedown', function() {
@@ -100,6 +99,25 @@
       padding: 0;
       margin: 0;
       font-family: Helvetica;
+    }
+    
+    #canvasbg {
+      width: 1024px;
+      height: 748px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      -webkit-transition: background 1s;
+      pointer-events: none;
+    }
+    #canvasbg.is-visible {
+      background-image: url('images/background_game.png');
+
+      -webkit-transition: background 1s, -webkit-filter 1s;
+      
+    }
+    #canvasbg.is-blur {
+      -webkit-filter: blur(3px) grayscale(.15);
     }
 
     #headerContainer {
@@ -224,6 +242,7 @@
 
 
         <div id="canvas">
+          <div id="canvasbg"></div>
           <div id="outlines">
 
 
