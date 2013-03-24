@@ -40,12 +40,12 @@ game.totalCanvasImages = function(level) {
 
 // Static game buttons, backgrounds etc
 game.otherImages = [
-  'images/again_btn-01',
-  'background_game',
-  'great_finish-01',
-  'next_btn-01',
-  'play_btn',
-  'start_bg-01'
+  'images/again_btn-01.png',
+  'images/background_game.png',
+  'images/great_finish-01.png',
+  'images/next_btn-01.png',
+  'images/play_btn.png',
+  'images/start_bg-01.png'
   ];
 
 game.audioLoaded = false;
@@ -152,33 +152,52 @@ function endGame() {
 }
 
 function preloadImages(level) {
-    var preloadTotalImages = totalCanvasImages() + otherImages.length;
+    var preloadTotalImages = game.totalCanvasImages(level) + game.otherImages.length;
+    console.debug('Total images to load: %s', preloadTotalImages);
     var loaded = 0;
+    
+    game.otherImages.forEach(function(curr) {
+      var img = new Image();
+      img.src = curr;
+      
+      if (img.width && img.height) {
+        loaded++;
+        console.debug('Otherimages already loaded: %s', loaded);
+      }else{
+        img.onload = function() {
+          loaded++;
+          if(loaded >= preloadTotalImages) {
+            game.trigger('imagesLoaded');
+            console.debug('Trigger activated: images loaded!');
+          }
+        }
+      }
+    });
+    
     level.layers.forEach(function(layer) {
 
         layer.tiles.forEach(function(tile) {
-            if (tile.src != null) {
-              var img = new Image();
-              img.src = tile.src;
-              
-              img.onload = function() {
-                loaded++
-                if(loaded >= preloadTotalImages) {
-                  game.trigger('imagesLoaded');
-                }
-              }
+          var img = new Image();
+          img.src = tile.src;
+          
+          img.onload = function() {
+            loaded++
+            console.debug(loaded);
+            if(loaded >= preloadTotalImages) {
+              game.trigger('imagesLoaded');
             }
+          }
         });
         var img = new Image();
         img.src = layer.src;
         img.onload = function() {
           loaded++
+          console.debug(loaded);
           if(loaded >= preloadTotalImages) {
             game.trigger('imagesLoaded');
           }
         }
     });
-    game.trigger('imagesLoaded');
 }
 
 var currentLayer = -1;
