@@ -23,6 +23,31 @@ function preloadResources() {
 
 
 var game = $({});
+
+// Returns total canvas images that have to be preloaded
+game.totalCanvasImages = function(level) {
+  var totalImages = 0;
+    level.layers.forEach(function(layer) {
+      // One image per layer
+      totalImages++;
+      
+        layer.tiles.forEach(function(tile) {
+            totalImages++;
+        });
+    });
+  return totalImages;
+}
+
+// Static game buttons, backgrounds etc
+game.otherImages = [
+  'images/again_btn-01',
+  'background_game',
+  'great_finish-01',
+  'next_btn-01',
+  'play_btn',
+  'start_bg-01'
+  ];
+
 game.audioLoaded = false;
 game.imagesLoaded = false;
 game.isFullyLoaded = function(audio, images){
@@ -127,21 +152,31 @@ function endGame() {
 }
 
 function preloadImages(level) {
+    var preloadTotalImages = totalCanvasImages() + otherImages.length;
+    var loaded = 0;
     level.layers.forEach(function(layer) {
 
         layer.tiles.forEach(function(tile) {
             if (tile.src != null) {
-                var img = new Image();
-                img.src = tile.src;
+              var img = new Image();
+              img.src = tile.src;
+              
+              img.onload = function() {
+                loaded++
+                if(loaded >= preloadTotalImages) {
+                  game.trigger('imagesLoaded');
+                }
+              }
             }
         });
         var img = new Image();
         img.src = layer.src;
-        /*
         img.onload = function() {
           loaded++
-          if(loaded >= totalImages)
-        }*/
+          if(loaded >= preloadTotalImages) {
+            game.trigger('imagesLoaded');
+          }
+        }
     });
     game.trigger('imagesLoaded');
 }
