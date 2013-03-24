@@ -44,7 +44,7 @@
              startGame();
            });
 
-           
+
            return false;
          });
 
@@ -57,6 +57,7 @@
 
          game.on('end', function() {
            $('#feedback').fadeIn(animationDelay);
+
          });
 		 
 		 game.on("pointsLoaded",function(){
@@ -78,6 +79,7 @@
           resetGame();
          });
          
+
             
         game.on('loaded', function() {
         $('#loading')
@@ -102,8 +104,28 @@
       font-family: Helvetica;
     }
     
+    
     body {
       background-color: #000049;
+    }
+
+    #canvasbg {
+      width: 1024px;
+      height: 748px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      -webkit-transition: background 1s;
+      pointer-events: none;
+    }
+    #canvasbg.is-visible {
+      background-image: url('images/background_game.png');
+
+      -webkit-transition: background 1s, -webkit-filter 1s;
+      
+    }
+    #canvasbg.is-blur {
+      -webkit-filter: blur(3px) grayscale(.15);
     }
 
     #headerContainer {
@@ -235,6 +257,7 @@
 
 
         <div id="canvas">
+          <div id="canvasbg"></div>
           <div id="outlines">
 
 
@@ -260,6 +283,7 @@
               <div id="nextLevel">
                 <img src="images/next_btn-01.png" />
               </div>
+
               &nbsp;
             </div>
           </div>

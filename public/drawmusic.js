@@ -91,6 +91,7 @@ function layerComplete() {
 
 function startNextLayer() {
   audio.loadTrack(currentLayer)
+  firstPoint=true
   setupLayer(level.layers[currentLayer].tiles, level.layers[currentLayer].src);
 }
 
@@ -100,6 +101,8 @@ function layerProgress() {
 
 
 function startGame() {
+  $('#canvas #canvasbg').addClass('is-visible')
+  $('#canvas #canvasbg').addClass('is-blur')
 
   level.layers = level.layers.map(function(l) {
     l.tiles = l.tiles.map(function(t) {
@@ -134,18 +137,20 @@ function startGame() {
 function resetGame() {
   currentLayer = -1;
   audio.stopAll();
-  
+
   // Tõnis had some fun at startGame, this makes his fun go around another time
   level = JSON.parse(JSON.stringify(firstLevel));
-  
+
   // Almost a hack
   audio.prepareAudio(level);
-  
+
   game.trigger('reset');
   startGame();
 }
 
 function endGame() {
+
+    $('#canvas #canvasbg').removeClass('is-blur')
     console.debug('Game ended');
     game.trigger('end');
     GameAnimations.play(20000);
@@ -283,7 +288,7 @@ var firstLevel = {
       x: 390,
       y: 405,
       "src": "twinkle/earth.png",
-      "audio": "twinkle/twink1_drums.mp3"
+      "audio": "twinkle/twink1_bass.mp3"
     },
     {
       "tiles": [
@@ -363,7 +368,7 @@ var firstLevel = {
       x: 718,
       y: 130,
       "src": "twinkle/zzz_moon.png",
-      "audio": "twinkle/twink1_bass.mp3"
+      "audio": "twinkle/twink1_strings.mp3"
     },
     {
       "tiles": [
