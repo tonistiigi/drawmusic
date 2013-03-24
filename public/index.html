@@ -72,6 +72,7 @@
           $('#outlines').empty();
           $('.points').empty();
           $('.ready').empty();
+          $('#nextLevel').fadeIn(animationDelay);
          });
          
          $('#drawAgain a').on('touchstart mousedown', function() {
@@ -104,6 +105,22 @@
        
        $('#nextLevel img').on("mouseout touchmove",function(){
         $(this).animate({width: "211px", marginLeft: "0", marginTop: "0"}, 'fast');
+       });
+       
+       
+       
+       $('#nextLevel a')
+           .on('touchstart mousedown', function() {
+           nextLevel();
+           return false;
+         });
+         
+       game.on('nextLevel', function() {
+          $('#outlines').empty();
+          $('.points').empty();
+          $('.ready').empty();
+          $('#nextLevel').hide();
+          $('#promo').fadeIn(animationDelay);
        });
      });
      
@@ -265,7 +282,14 @@
       width: 211px;
     }
 
-
+    #promo {
+      display: none;
+      position: relative;
+    }
+    
+    #promo img{
+      display: relative;
+    }
     
 
   </style>
@@ -308,7 +332,12 @@
           <div class="center" id="startGame">
             <div id="loading"><img src="images/loading.gif" /></div>
             <a href="#"><img id="play_btn" src="images/play_btn.png"/></a>
-            
+          </div>
+          
+          <div class="center" id="promo">
+          <br />
+            <img src="images/preview-02.png" /><br /><br />
+            <img src="images/buy_btn-02.png" />
           </div>
 
           <div class="points"></div>
