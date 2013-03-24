@@ -6,17 +6,17 @@
     <script type="text/javascript" src="audio.js"></script>
     <script type="text/javascript" src="canvas.js"></script>
     <script type="text/javascript" src="drawmusic.js"></script>
+    <script type="text/javascript" src="animations.js"></script>
     <meta name="viewport" content="width = 1024, user-scalable = no">
     <meta name="apple-mobile-web-app-capable" content="yes">
   </head>
   <body>
-  
+
   <script type="text/javascript">
     var animationDelay = 250;
      $(document).ready(function() {
           preloadResources();
 
-		 
 		   $('#play_btn').on("mouseover touchstart",function()
        {
           $(this).css("cursor","pointer");
@@ -35,9 +35,9 @@
            $(this).parent().fadeOut(animationDelay);
            $('#headerContainer')
              .fadeIn(animationDelay);
-           
+
            $('#cheat').show();
-           
+
            startGame();
            return false;
          });
@@ -51,11 +51,11 @@
 
          game.on('end', function() {
            $('#feedback').fadeIn(animationDelay);
-           
-           
+
+
            $('#cheat').hide();
          });
-         
+
             $('#cheat a').click(function() {
                 game.trigger('end');
             });
@@ -67,12 +67,12 @@
          .fadeOut(animationDelay, function() {
          $('#startGame')
            .fadeIn(animationDelay);
-           
+
        });
      });
 
   </script>
-  
+
   <style type="text/css">
     /* Common */
     html, body {
@@ -81,15 +81,13 @@
       margin: 0;
       font-family: Helvetica;
     }
-    
+
     #headerContainer {
       padding-left: 224px;   /* LC width */
       padding-right: 224px;  /* RC width */
-      
+
       background-color: rgba(0, 0, 0, 0.2);
       height: 76px;
-	  position:absolute;
-      
      display: none;
     }
     #headerContainer .column {
@@ -109,47 +107,47 @@
       width: 224px;          /* RC width */
       margin-right: -224px;  /* RC width */
     }
-    
+
     #main {
     }
-    
+
     #loading {
         font-size: 5em;
         text-align: center;
         padding: 30px;
         font-family: Helvetica;
     }
-    
+
     .center {
         text-align: center;
     }
-    
+
     .right {
         text-align: right;
     }
-    
+
     /* Game buttons */
-    
+
     #startGame {
-        
+
     }
-    
+
     #startGame img {
       position: relatative;
       top: 400px;
 	  margin:230px auto 0;
     }
-    
+
     #drawAgain {
     }
-    
+
     #feedback {
       display: none;
     }
-    
+
     #nextLevel {
     }
-    
+
     #cheat {
         text-align: right;
     }
@@ -189,28 +187,25 @@
       position: absolute;
       background-repeat: no-repeat;
     }
-    
+
     #canvasid {
       position: absolute;
       top: 0px;
       left: 0px;
       pointer-events: none;
     }
-	
-    
-    
-    
+
   </style>
     <div id="main">
-  
-    
+
+
         <div id="canvas">
           <div id="outlines">
-            
-            
+
+
           </div>
-          
-         
+
+
           <div id="headerContainer">
             <div id="center" class="column">
               <div id="loading">Loading...</div>
@@ -235,19 +230,19 @@
               &nbsp;
             </div>
           </div>
-          
-          
+
+
           <div class="center" id="startGame">
             <a href="#"><img id="play_btn" src="images/play_btn.png"/></a>
           </div>
-      
+
           <div class="points"></div>
-          
+
           <div class="ready"></div>
-      
+
           <canvas id="canvasid" width="1024" height="748"></canvas>
         </div>
-    
+
     </div>
   </body>
 </html>

@@ -113,6 +113,7 @@ function resetGame() {
 function endGame() {
     console.debug('Game ended');
     game.trigger('end');
+    GameAnimations.play(20000);
 }
 
 function preloadImages(level) {

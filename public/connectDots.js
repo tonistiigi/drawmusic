@@ -120,7 +120,6 @@ function isNextPoint(x, y) {
         $('#canvas .points').empty()
 
 
-
         clearCanvas();
         lastTouch = null
 
@@ -135,6 +134,7 @@ function isNextPoint(x, y) {
           $('#canvas #outlines').empty()
 
           lastTouch = null
+          $('#canvas #outlines').empty()
         }, 600)
 			}
 			currentPoint=points[pointNumber];
