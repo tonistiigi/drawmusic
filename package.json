@@ -1,6 +1,6 @@
 {
   "name": "drawmusic",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Children game where you draw stuff and hear it play",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,4 @@
   },
   "author": "",
   "license": "BSD",
-  "readmeFilename": "README.md",
-  "gitHead": "52e7672fc198d356895351411978d5d19aefaee0"
 }
